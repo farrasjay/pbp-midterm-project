@@ -1,0 +1,67 @@
+[
+    {
+        "model": "faq.question",
+        "pk": 1,
+        "fields": {
+            "question" : "How to maintain a healthy weight? ",
+            "answer" : "To maintain a healthy weight, you need to balance the amount of calories you consume through food and drink with the amount of calories you burn through physical activity."
+        }
+    },
+    {
+        "model": "faq.question",
+        "pk": 2,
+        "fields": {
+            "question" : "What should my daily intake of calories be? ",
+            "answer" : "An ideal daily intake of calories varies depending on age, metabolism and levels of physical activity, among other things. Generally, the recommended daily calorie intake is 2,000 calories a day for women and 2,500 for men."
+        }
+    },
+    {
+        "model": "faq.question",
+        "pk": 3,
+        "fields": {
+            "question" : "What is a 'healthy diet'? ",
+            "answer" : "A healthy eating pattern is one that provides enough of each essential nutrient from nutrient-dense foods, contains a variety of foods from all of the basic food groups, and focuses on balancing calories consumed with calories expended to help you achieve and sustain a healthy weight. This eating pattern limits intake of solid fats, sugar, salt (sodium) and alcohol."
+        }
+    },
+    {
+        "model": "faq.question",
+        "pk": 4,
+        "fields": {
+            "question" : "How to lose weight in a healthy way? ",
+            "answer" : "To lose weight in a healthy way, you need to use more energy than you consume by eating a healthy, balanced diet with fewer calories while increasing your physical activity."
+        }
+    },
+    {
+        "model": "faq.question",
+        "pk": 5,
+        "fields": {
+            "question" : "What are the most common foods that people are allergic to? ",
+            "answer" : "The Food and Drug Administration's (FDA) Food Allergies page lists the most common foods to cause allergies as milk, eggs, fish, crab, lobster, shrimp, almonds and other tree nuts, and peanuts (one of the chief foods responsible for severe anaphylaxis)."
+        }
+    },
+    {
+        "model": "faq.question",
+        "pk": 6,
+        "fields": {
+            "question" : "What is the relationship between eating healthily and calories? ",
+            "answer" : "Calories are your body's source of fuel. We need to refuel our energy supply by eating food, yet many diets have branded calories as our enemy for weight, yet calories are a necessary part of our lives. A regular man should aim for around 2500 calories, and a woman around 2,000 calories per day for a healthy diet, unless trying to lose weight. Generally high calorie foods indicate a higher amount of salt, sugars or fat, yet some foods that are naturally high in calories are a useful, nutritious inclusion to a healthy diet. Corn, nuts, avocados, olive oil, and whole grain breads are all calorie-rich but beneficial foods, providing a variety of nutrients needed in your diet and also provide long lasting satisfaction to other healthy foods that fail to fill you up. "
+        }
+    },
+    {
+        "model": "faq.question",
+        "pk": 7,
+        "fields": {
+            "question" : "Are foods that contain sugar unhealthy? ",
+            "answer" : "Sugar can be an enemy to a healthy diet, tasting so delicious in a variety of food and even hidden in foods that you wouldn’t suspect. Yet it is important to address the difference between natural and added sugars for a healthy diet. Sugars are carbs which provide a vital source of energy and nutrition, yet many popular foods have sugar added to them, this is when sugars become unhealthy. Fruits and some vegetables contain naturally occurring sugars which are considered healthy when not consumed in overly excessive amounts, but added sugars provide nearly no nutritional value and contribute significantly to weight gain, damaging your health diet. It is therefore important to check the labels to ensure no products contain hidden added sugars. "
+        }
+    },
+    {
+        "model": "faq.question",
+        "pk": 8,
+        "fields": {
+            "question" : "How important are fruit and veg? ",
+            "answer" : "To achieve a healthy diet, vegetables and fruit must be a vital feature to ensure the access to a mixture of vitamins and minerals that are abundant within them. Not only do fruit and veg provide a rich source of vitamins, minerals and antioxidants, they also serve as a source of energy, aid weight loss and can be an influential tool in the prevention of disease. Vegetables and fruit can improve the functions of the heart, kidneys, bones and prevent the onset of cancers, diabetes and other diseases. Without the inclusion of fruits and veg, your body will be considerably deficient in vital nutrients needed for all bodily functions from the working of the brain to growing hair and nails. "
+        }
+    }
+    
+]

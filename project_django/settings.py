@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'example_app',
     'katalog',
-    'uhealths'
+    'uhealths',
+    'faq'
 ]
 
 MIDDLEWARE = [

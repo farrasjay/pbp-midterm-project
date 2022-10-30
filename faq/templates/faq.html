@@ -186,39 +186,51 @@
                     if(user>0){
                         
                         if(trim === 'Unlike') {
-                            console.log(document.getElementById("status_like").value)
                             $(`#like-btn${post_id}`).text("Like")
                             res = trimCount - 1
-                            if(document.getElementById("status_like").value=="1"){
-                                $(`.icon-fill${post_id}`).empty()
-                                $(`.icon-fill${post_id}`).append("<i class='bi bi-heart'></i>")
-                                $(`.icon-fill${post_id}`).toggle("bi-heart-fill")
-                            }
+                            // if(document.getElementById("status_like").value=="1"){
+                            //     console.log("benar")
+                            $(`.icon-fill${post_id}`).empty()
+                            $(`.icon-fill${post_id}`).append("<i class='bi bi-heart'></i>")
+                            $(`.icon-fill${post_id}`).toggle("bi-heart")
+                            $(`.icon-heart${post_id}`).empty()
+                            $(`.icon-heart${post_id}`).append("<i class='bi bi-heart'></i>")
+                            $(`.icon-heart${post_id}`).toggle("bi-heart")
+                            // }
                             // $(`.icon-fill${post_id}`).toggle("bi-heart-fill")
-                            else{
-                                $(`.icon-heart${post_id}`).empty()
-                                $(`.icon-heart${post_id}`).append("<i class='bi bi-heart'></i>")
-                                $(`.icon-heart${post_id}`).toggle("bi-heart-fill")
-                            }
+                            // else{
+                                // $(`.icon-heart${post_id}`).empty()
+                                // $(`.icon-heart${post_id}`).append("<i class='bi bi-heart'></i>")
+                                // $(`.icon-heart${post_id}`).toggle("bi-heart")
+                                // $(`.icon-fill${post_id}`).empty()
+                                // $(`.icon-fill${post_id}`).append("<i class='bi bi-heart'></i>")
+                                // $(`.icon-fill${post_id}`).toggle("bi-heart")
+                            // }
 
                             
                         }
                         else {
                             $(`#like-btn${post_id}`).text("Unlike")
                             res = trimCount + 1
-                            console.log(document.getElementById("status_like").value)
                             // $(`.icon-fill${post_id}`).toggle("bi-heart-fill")
-                            if(document.getElementById("status_like").value=="1"){
-                                $(`.icon-fill${post_id}`).empty()
-                                $(`.icon-fill${post_id}`).append("<i class='bi bi-heart-fill'></i>")
-                                $(`.icon-fill${post_id}`).toggle("bi-heart-fill")
-                            }
-                            // $(`.icon-fill${post_id}`).toggle("bi-heart-fill")
-                            else{
-                                $(`.icon-heart${post_id}`).empty()
-                                $(`.icon-heart${post_id}`).append("<i class='bi bi-heart-fill'></i>")
-                                $(`.icon-heart${post_id}`).toggle("bi-heart-fill")
-                            }
+                            // if(document.getElementById("status_like").value=="1"){
+                            //     console.log("bnear")
+                            $(`.icon-fill${post_id}`).empty()
+                            $(`.icon-fill${post_id}`).append("<i class='bi bi-heart-fill'></i>")
+                            $(`.icon-fill${post_id}`).toggle("bi-heart-fill")
+                            $(`.icon-heart${post_id}`).empty()
+                            $(`.icon-heart${post_id}`).append("<i class='bi bi-heart-fill'></i>")
+                            $(`.icon-heart${post_id}`).toggle("bi-heart-fill")
+                            // }
+                            // // $(`.icon-fill${post_id}`).toggle("bi-heart-fill")
+                            // else{
+                                // $(`.icon-heart${post_id}`).empty()
+                                // $(`.icon-heart${post_id}`).append("<i class='bi bi-heart-fill'></i>")
+                                // $(`.icon-heart${post_id}`).toggle("bi-heart-fill")
+                                // $(`.icon-fill${post_id}`).empty()
+                                // $(`.icon-fill${post_id}`).append("<i class='bi bi-heart-fill'></i>")
+                                // $(`.icon-fill${post_id}`).toggle("bi-heart-fill")
+                            // }
                             
                          }
 

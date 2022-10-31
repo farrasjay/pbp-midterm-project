@@ -1,0 +1,224 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+<title>Infografis</title>
+<style>
+    h1 {
+        text-align:center;
+        margin: 100px 100px 100px 100px;
+    }
+    h4 {
+        margin: 200px 100px 100px 100px;
+    }
+    p {
+        margin: 100px 100px 200px 100px;
+    }
+    button {
+        margin: 100px 100px 100px 100px;
+    }
+    .btn btn-primary {
+        margin: 100px 100px 100px 100px;
+    }
+    h3 {
+        margin: 50px 50px 50px 50px;
+    }
+    .card {
+        margin: 10px 50px 10px 50px;
+    }
+    .komen {
+        margin: 10px 50px 10px 50px;
+    }
+    .rounded-circle {
+        margin: 5px 10px 5px 3px;
+    }
+    img {
+        margin: 50px 100px 100px 0px;
+      }
+    .perbagian {
+        margin: 50px 50px 50px 50px;
+    }
+</style>
+{% endblock meta %}
+
+{% block content %}
+<head>
+    <script src=
+    "https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+        </script>
+          
+        <!-- Script to get JSON file and display its content -->
+        <script type="text/javascript" language="javascript">
+        $(document).ready(function() {
+            $.get("/infografis/json/", function(comment) {
+                console.log(comment)
+                for (i = 0; i < comment.length; i++){
+                    $(".comment_list").append(`
+                    <div class="card">
+                        <div class="d-flex flex-column comment-section">
+                            <div class="bg-white p-2">
+                                <div class="card-header">
+                                <div class="d-flex flex-row user-info"><img class="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" width="40">
+                                    <div class="d-flex flex-column justify-content-start ml-2"><span class="d-block font-weight-bold name">${comment[i].fields.nama}</span><span class="date text-black-50">${comment[i].fields.date}</span></div>
+                                </div>
+                                </div>
+                                <div class="card-body">
+                                <div class="mt-2">
+                                    <p class="comment-text">${comment[i].fields.comment}</p>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            `)
+                }
+            });
+            $("#addcomment").click(function(){
+                $.post("/infografis/add_comment/", {
+                  comment: $('#komen').val()},
+                  function (result) {
+                    $(".comment_list").append(`
+                    <div class="card">
+                        <div class="d-flex flex-column comment-section">
+                            <div class="bg-white p-2">
+                                <div class="card-header">
+                                <div class="d-flex flex-row user-info"><img class="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" width="40">
+                                    <div class="d-flex flex-column justify-content-start ml-2"><span class="d-block font-weight-bold name">${result.fields.nama}</span><span class="date text-black-50">${result.fields.date}</span></div>
+                                </div>
+                                </div>
+                                <div class="card-body">
+                                <div class="mt-2">
+                                    <p class="comment-text">${result.fields.comment}</p>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            `)
+                    $('#komen').val('')
+                  }
+                  )
+                })
+        }); 
+        </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-dark bg-primary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'infografis:infografis' %}">Back</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Dropdown
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled">Disabled</a>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+      
+    <div class="perbagian">
+    <h1> 5 Tips Sederhana Memulai Pola Hidup Sehat </h1>
+    </div>
+    <table>
+        <tr>
+    <td> <p>Banyak orang yang tidak begitu paham bagaimana caranya menerapkan pola hidup sehat, baik secara fisik dan mental. Padahal, kebiasaan hidup sehat dan bahagia adalah kunci panjang umur.
+    Artinya, semakin bahagia seseorang, maka besar pula kemungkinannya orang tersebut hidup lebih lama. Jadi, yuk mulai terapkan pola hidup sehat dengan berbagai cara atau tips di bawah ini. </p> </th>
+    <td><img src="https://cdn.discordapp.com/attachments/1002595520281325578/1035466209942044692/Screen_Shot_2022-10-28_at_3.12.10_PM.png" width="500" height="350"> </th>
+    </tr>
+    </table>
+    <div class="perbagian">
+    <h4> 1. Hindari Stress </h4>
+    <p> Macet di jalan, deadline tugas atau kerjaan yang mencekik, keuangan yang tersendat, hubungan asmara yang sedang renggang, dan berbagai prahara hidup lainnya tentu akan membuat Anda stres.
+
+        Saat Anda stres, semua sistem dalam tubuh Anda akan meresponsnya dengan cara yang berbeda-beda. Stres yang bersifat kronis dapat berdampak pada kesehatan Anda secara keseluruhan.
+        
+        Jika Anda stres, cobalah untuk tenangkan diri sambil mengambil napas dalam-dalam dan embuskan secara perlahan. Lakukan hal tersebut berulang kali sampai merasa lebih rileks.
+        
+        Anda juga bisa melakukan berbagai aktivitas lainnya yang Anda senangi, seperti membaca buku, menonton film, atau lainnya. Intinya, buatlah diri Anda merasa nyaman dengan cara yang Anda senangi. </p>
+    </div>
+    
+    <div class="perbagian">
+    <h4 class="text-end"> 2. Bijak Memilih Makanan </h4>
+    <p> Apa yang Anda makan tentu akan memengaruhi bagaimana tubuh Anda bekerja. Oleh sebab itu, penting bagi Anda untuk memperhatikan setiap makanan yang Anda konsumsi setiap hari demi mewujudkan pola hidup sehat.
+
+        Pastikan kalau makanan dalam piring Anda memenuhi prinsip gizi seimbang yang mencakup karbohidrat, serat, protein, dan lemak baik.
+        
+        Perhatikan pula porsi makan Anda. Memperhatikan porsi makan sangatlah penting untuk mencegah Anda mengalami kegemukan dan terserang berbagai penyakit kronis. Ingat, apa pun yang berlebihan tentu tidak baik untuk tubuh.
+        
+        Selain memilah makanan yang akan dikonsumsi, Anda juga harus bijak dalam mengolahnya. Hindari mengolah makanan dengan cara digoreng. Anda bisa mengolah makanan dengan cara yang lebih sehat, seperti direbus, dikukus, atau ditumis.</p>
+    </div>
+
+    <div class="perbagian">
+    <h4> 3. Lakukan Olahraga Setiap Hari </h4>
+    <p> Olahraga tak melulu harus jogging atau pergi ke gym. Anda bebas melakukan berbagai jenis olahraga yang memang Anda sukai demi menerapkan kebiasaan pola hidup sehat. Nah, bagi Anda pekerja kantoran yang mungkin tidak memiliki banyak waktu untuk berolahraga, Anda bisa melakukan berbagai aktivitas fisik sederhana guna memastikan tubuh Anda tetap bergerak.
+
+        Saat menuju ruangan kantor, cobalah untuk memilih naik tangga ketimbang lift atau eskalator. Anda juga bisa meluangkan waktu untuk berjalan-jalan atau sekadar naik turun tangga sebelum dan sesudah makan siang.
+
+        Jika Anda suka bersepeda atau berenang, maka jangan ragu untuk melakukannya. Begitu pula jika hanya menyukai jalan santai. Kuncinya satu, buatlah tubuh Anda aktif bergerak setiap hari.
+        
+        Dengan aktif bergerak, tubuh Anda akan berusaha untuk membakar kalori yang mengendap di tubuh. Selain itu, hal ini juga dapat membantu mengalirkan lebih banyak oksigen ke dalam sel-sel tubuh dan menjaganya tetap sehat.
+        
+        Tak heran jika setelah olahraga atau melakukan aktivitas fisik Anda jadi merasa lebih bugar.</p>
+    </div>
+    
+    <div class="perbagian">
+    <h4 class="text-end"> 4. Cukup Tidur </h4>
+    <p> Rajin olahraga dan makan makanan yang bernutrisi tinggi akan berakhir sia-sia kalau Anda sendiri kurang tidur.
+
+        Menurut Cheri Mah, pakar masalah gangguan tidur di Stanford University dan University of California, tidur adalah kebutuhan paling mendasar untuk menuju pola hidup sehat.
+        
+        Tidur menjadi sebuah fondasi di mana pikiran dan tubuh yang sehat terbentuk. Jika kebiasaan hidup sehat ini goyah, tentunya akan berdampak pada kesehatan Anda.
+        
+        Menurut National Sleep Foundation, durasi tidur yang ideal bagi orang dewasa sekitar 7 – 9 jam per malam. Jadi, pastikan kalau setiap malam Anda tidur setidaknya 7 – 9 jam, ya!</p>
+    </div>
+
+    <div class="perbagian">
+    <h4> 5. Banyak Minum Air Putih </h4>
+    <p> Sekitar 60% dari komposisi tubuh Anda adalah air. Setiap hari, cairan dalam tubuh akan terus berkurang lewat keringat, urine, dan bahkan setiap kali Anda bernapas.
+
+        Inilah mengapa penting untuk memastikan bahwa kebutuhan cairan Anda terpenuhi setiap hari supaya mencegah dehidrasi.
+        
+        Bawalah botol minum sendiri ke mana pun Anda pergi. Masukkan botol tersebut ke dalam tas, sehingga Anda tidak akan lupa membawanya ke mana-mana. Selain itu, sediakan juga air putih di meja kerja atau kamar tidur. </p>
+    </div>
+
+    <h3> KOMENTAR </h3>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <div class="komen">
+        <div class="bg-light p-2">
+            <div class="d-flex flex-row align-items-start"><img class="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" width="40"><input type="text" placeholder="..." class="form-control ml-1 shadow-none textarea" id="komen" style="height: 100px"></div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <div class="mt-2 text-right">
+                <button type="button" class="btn btn-primary" id="addcomment">Add Comment</button>
+            </div>
+            </div>
+        </div>
+    </div>
+    </form>
+    <div class="comment_list"></div>
+</body>
+{% endblock content %}

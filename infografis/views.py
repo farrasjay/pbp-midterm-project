@@ -7,7 +7,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-from uhealths.models import *
+from infografis.models import *
 from django.views.decorators.csrf import csrf_exempt
 
 def infografis(request):

@@ -27,6 +27,26 @@
     .faq-container{
         display: flex;
         flex-wrap: wrap;
+        margin-top: 30px;
+    }
+    .container-fluid{
+        display: flex;
+        
+    }
+    .navbar{
+        padding-inline: 15px;
+    }
+
+    .navbar-brand{
+        scale: 1.2;
+    }
+    .navbar-nav{
+        display: flex;
+        flex-direction:row;
+    }
+
+    .nav-link{
+        margin-right: 20px;
     }
     .card{
         margin-bottom: 10px;
@@ -40,7 +60,7 @@
         box-shadow: 5px 6px 6px 2px #e9ecef;
     }
     .card-header {
-        background-color: #27645c;
+        background-color: #2C3895;
         color :#ffffff;
         
     }
@@ -66,11 +86,19 @@
         background-size: cover;
     }
 </style>
-
+<nav class="navbar navbar-light" style="background-color: #6495ED;">
+    <a class="navbar-brand" href="">uHealths</a>
+        <div class="navbar-nav">
+            <a class="nav-link" href="{% url 'uhealths:home' %}">Home</a>
+            <a class="nav-link" href="#" style="color:blue">Profile</a>
+            <a class="btn btn-outline-light" href="{% url 'uhealths:logout' %}" role="button">Logout</a>
+        </div>
+</nav>
 <div class="container">
     <h1><br><strong>Frequently Asked Questions</strong></h1>
     <br>
     <div class="faq-container">
+
         {% for data in data_faq %}
         <div class="card mb-3" style="width: 32rem;">
             <div class="card-header">
@@ -81,7 +109,7 @@
                     <div class="card-text">
                         <div class="text{{data.id}}">{{data.answer}}</div>
                     </div>
-                    <form action="{% url 'faq:like' %}" method="POST" class='like-form' id='{{data.id}}'>
+                    <form method="POST" class='like-form' id='{{data.id}}'>
                         {% csrf_token %}
                         <input type="hidden" name="post_id" value={{data.id}}>
                         <input type="hidden" id = "id-user" value="{{user.id}}"/>
@@ -143,44 +171,56 @@
 
 <script>
     $( document ).ready(function() {
-        $(`.text1`).hide();
-        $(`.text2`).hide();
-        $(`.text3`).hide();
-        $(`.text4`).hide();
-        $(`.text5`).hide();
-        $(`.text6`).hide();
-        $(`.text7`).hide();
-        $(`.text8`).hide();
+        var user =  document.getElementById("id-user").value;
+        $.ajax({
+            url: "faq/get/",
+            type: "GET",
+            dataType: "json",
+            success: (data) => {
+                console.log("berhasil")
+                if(data.recently_viewed_question != null){
+                    for (let i = 1; i <= 12; i++) {
+                        if(!(data.recently_viewed_question).includes(i)){
+                            console.log("berhasil"+i)
+                            $(`.text${i}`).hide();
+                        }
+                    }   
+                }
+                else{
+                    for (let i = 1; i <= 12; i++) {
+                        $(`.text${i}`).hide();
+                    }   
+                }
+
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        });
+    
 
         $('.like-form').submit(function(e){
             e.preventDefault()
-
-            var user =  document.getElementById("id-user").value;
-            
+      
             const post_id = $(this).attr('id')
             
             const likeText = $(`#like-btn${post_id}`).text()
             const trim = $.trim(likeText)
 
-            const url = $(this).attr('action')
             
             let res;
             const likes = $(`.like-count${post_id}`).text()
             const trimCount = parseInt(likes)
- 
-            
-            
+       
             $.ajax({
                 type: 'POST',
-                url: url,
+                url: "faq/like/" + post_id,
                 async: true,
                 data: {
                     'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
-                    'post_id':post_id,
                 },
                 
-                success: function(response) {
-                    
+                success: function(response) {    
                     var status = document.getElementById("status_user").value;
                     $(`.icon-heart${post_id}`).toggle("bi-heart")
                     if(user>0){
@@ -188,52 +228,23 @@
                         if(trim === 'Unlike') {
                             $(`#like-btn${post_id}`).text("Like")
                             res = trimCount - 1
-                            // if(document.getElementById("status_like").value=="1"){
-                            //     console.log("benar")
                             $(`.icon-fill${post_id}`).empty()
                             $(`.icon-fill${post_id}`).append("<i class='bi bi-heart'></i>")
                             $(`.icon-fill${post_id}`).toggle("bi-heart")
                             $(`.icon-heart${post_id}`).empty()
                             $(`.icon-heart${post_id}`).append("<i class='bi bi-heart'></i>")
-                            $(`.icon-heart${post_id}`).toggle("bi-heart")
-                            // }
-                            // $(`.icon-fill${post_id}`).toggle("bi-heart-fill")
-                            // else{
-                                // $(`.icon-heart${post_id}`).empty()
-                                // $(`.icon-heart${post_id}`).append("<i class='bi bi-heart'></i>")
-                                // $(`.icon-heart${post_id}`).toggle("bi-heart")
-                                // $(`.icon-fill${post_id}`).empty()
-                                // $(`.icon-fill${post_id}`).append("<i class='bi bi-heart'></i>")
-                                // $(`.icon-fill${post_id}`).toggle("bi-heart")
-                            // }
-
-                            
+                            $(`.icon-heart${post_id}`).toggle("bi-heart") 
                         }
                         else {
                             $(`#like-btn${post_id}`).text("Unlike")
                             res = trimCount + 1
-                            // $(`.icon-fill${post_id}`).toggle("bi-heart-fill")
-                            // if(document.getElementById("status_like").value=="1"){
-                            //     console.log("bnear")
                             $(`.icon-fill${post_id}`).empty()
                             $(`.icon-fill${post_id}`).append("<i class='bi bi-heart-fill'></i>")
                             $(`.icon-fill${post_id}`).toggle("bi-heart-fill")
                             $(`.icon-heart${post_id}`).empty()
                             $(`.icon-heart${post_id}`).append("<i class='bi bi-heart-fill'></i>")
                             $(`.icon-heart${post_id}`).toggle("bi-heart-fill")
-                            // }
-                            // // $(`.icon-fill${post_id}`).toggle("bi-heart-fill")
-                            // else{
-                                // $(`.icon-heart${post_id}`).empty()
-                                // $(`.icon-heart${post_id}`).append("<i class='bi bi-heart-fill'></i>")
-                                // $(`.icon-heart${post_id}`).toggle("bi-heart-fill")
-                                // $(`.icon-fill${post_id}`).empty()
-                                // $(`.icon-fill${post_id}`).append("<i class='bi bi-heart-fill'></i>")
-                                // $(`.icon-fill${post_id}`).toggle("bi-heart-fill")
-                            // }
-                            
                          }
-
                         $(`.like-count${post_id}`).text(res)
                     }
                     else{
@@ -246,15 +257,18 @@
                     console.log('error', response)
                 }
             })
-
         })
-
-
     });
     function showAnswer(id){
         var id_text = parseInt(id)
         $(`.text${id_text}`).toggle();
+        $.ajax({
+            url: "faq/set/" + id_text,
+            type: "GET",
+            dataType: "json",
+        });
     }
+
 </script>
 
 

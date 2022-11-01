@@ -1,0 +1,263 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+<title>Infografis</title>
+<style>
+    h1 {
+        text-align:center;
+        margin: 100px 100px 100px 100px;
+    }
+    h4 {
+        margin: 200px 100px 100px 100px;
+    }
+    p {
+        margin: 100px 100px 200px 100px;
+    }
+    button {
+        margin: 100px 100px 100px 100px;
+    }
+    .btn btn-primary {
+        margin: 100px 100px 100px 100px;
+    }
+    h3 {
+        margin: 50px 50px 50px 50px;
+    }
+    .card {
+        margin: 10px 50px 10px 50px;
+    }
+    .komen {
+        margin: 10px 50px 10px 50px;
+    }
+    .rounded-circle {
+        margin: 5px 10px 5px 3px;
+    }
+    .image{
+        justify-content:center;
+    }
+    .perbagian {
+        margin: 50px 50px 50px 50px;
+    }
+</style>
+{% endblock meta %}
+
+{% block content %}
+<head>
+    <script src=
+    "https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+        </script>
+          
+        <!-- Script to get JSON file and display its content -->
+        <script type="text/javascript" language="javascript">
+        $(document).ready(function() {
+            $.get("/infografis/jsonketiga/", function(comment) {
+                console.log(comment)
+                for (i = 0; i < comment.length; i++){
+                    console.log(comment)
+                    $(".comment_list").append(`
+                    <div class="card">
+                        <div class="d-flex flex-column comment-section">
+                            <div class="bg-white p-2">
+                                <div class="card-header">
+                                <div class="d-flex flex-row user-info"><img class="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" width="40">
+                                    <div class="d-flex flex-column justify-content-start ml-2"><span class="d-block font-weight-bold name">${comment[i].fields.nama}</span><span class="date text-black-50">${comment[i].fields.date}</span></div>
+                                </div>
+                                </div>
+                                <div class="card-body">
+                                <div class="mt-2">
+                                    <p class="comment-text">${comment[i].fields.comment}</p>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            `)
+                }
+            });
+            $("#addcomment").click(function(){
+                $.post("/infografis/add_comment3/", {
+                  comment: $('#komen').val()},
+                  function (result) {
+                    $(".comment_list").append(`
+                    <div class="card">
+                        <div class="d-flex flex-column comment-section">
+                            <div class="bg-white p-2">
+                                <div class="card-header">
+                                <div class="d-flex flex-row user-info"><img class="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" width="40">
+                                    <div class="d-flex flex-column justify-content-start ml-2"><span class="d-block font-weight-bold name">${result.fields.nama}</span><span class="date text-black-50">${result.fields.date}</span></div>
+                                </div>
+                                </div>
+                                <div class="card-body">
+                                <div class="mt-2">
+                                    <p class="comment-text">${result.fields.comment}</p>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            `)
+                    $('#komen').val('')
+                  }
+                  )
+                })
+        }); 
+        </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-dark bg-primary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'infografis:infografis' %}">Back</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Dropdown
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled">Disabled</a>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+      
+    <div class="perbagian">
+    <h1> 7 Gerakan Workout untuk Pemula di Rumah, Mudah dan Praktis !</h1>
+    </div>
+    <div align = center>
+        <img src="https://cdn.discordapp.com/attachments/1002595520281325578/1035525177729101925/Screen_Shot_2022-10-28_at_7.05.39_PM.png">
+    </div>
+    <p>Workout adalah salah satu cara paling praktis yang bisa Anda lakukan ketika ingin berolahraga di rumah. Sebab, ada berbagai latihan workout untuk pemula dengan gerakan-gerakan sederhana yang tentunya dapat mudah Anda pelajari.
+
+        Meski demikian, workout termasuk olahraga yang dapat membantu tubuh membakar lebih banyak kalo dalam waktu singkat dibanding jenis lainnya. Lantas, apa saja gerakan workout untuk pemula tersebut?
+        
+        Yuk, langsung saja simak rekomendasi beserta tips-tipsnya di bawah ini!</p>
+    <div class="perbagian">
+    <h4> 1. Push Up </h4>
+    <p>Push up adalah salah satu latihan workout untuk pemula yang cukup efektif dalam mengencangkan otot-otot tubuh, terutama pada bagian dada, trisep, lengan, dan depan bahu.
+
+        Untuk mendapatkan manfaat gerakan push up tersebut, Anda disarankan setidaknya berlatih secara rutin mulai dari 10 sampai 15 menit. Cara melakukannya pun sangat mudah, berikut langkah-langkahnya untuk pemula.
+        
+        Awali dengan posisi badan tengkurap di lantai dengan lutut sebagai tumpuan.
+        Letakkan tangan di atas lantai dengan lurus untuk menopang tubuh, lalu posisikan kaki menyilang.
+        Lakukan gerakan push up dengan menurunkan dada secara perlahan hingga mendekati permukaan lantai.
+        Angkat kembali tubuh Anda dengan lengan, lalu ulangi gerakan tersebut beberapa kali.</p>
+    </div>
+    
+    <div class="perbagian">
+    <h4 class="text-end"> 2. Sit Up </h4>
+    <p>Selain push up, ada pula latihan workout untuk pemula yang sangat sederhana dan mudah dilakukan, yaitu sit up. Adapun manfaat gerakan sit up adalah membantu Anda mengencangkan otot perut. Berikut cara melakukannya dengan benar.
+
+        Pertama, rebahkan tubuh Anda telentang di lantai
+        Tekuk lutut Anda dan posisikan telapak kaki rata dengan lantai, sementara tangan di belakang kepala.
+        Kemudian, mulailah angkat tubuh bagian atas hingga siku Anda berada tepat di sebelah lutut.
+         Sambil memastikan kaki tetap menempel di lantai, turunkan tubuh Anda secara perlahan.
+        Ulangi rangkaian gerakan tersebut beberapa kali.</p>
+    </div>
+
+    <div class="perbagian">
+    <h4> 3. Squat </h4>
+    <p>Rekomendasi gerakan workout untuk pemula berikutnya adalah squat. Ini merupakan latihan yang berfokus pada tubuh bagian bawah dan juga otot-otot inti. Jika Anda melatihnya secara rutin dan teratur, Anda bisa mengencangkan otot paha dan bokong.
+
+        Berikut langkah-langkah melakukan squat dengan baik dan benar.
+        
+        Awali dengan berdiri tegak dan kedua kaki dibuka selebar pinggul
+        Kemudian, turunkan tubuh sejauh yang Anda bisa secara perlahan dengan mendorong pinggul ke belakang
+        Bersamaan dengan itu, luruskan kedua lengan ke depan dada guna menjaga keseimbangan tubuh
+        Posisikan dada membusung dan tidak membungkuk, serta paha bagian atas sejajar dengan lantai, 
+        Setelah itu, angkat kembali badan Anda ke posisi berdiri tegak seperti semula.
+        Ulangi gerakan tersebut beberapa kali.</p>
+    </div>
+    
+    <div class="perbagian">
+    <h4 class="text-end"> 4. Wall Sit </h4>
+    <p>Wall sit adalah latihan workout untuk pemula yang hampir mirip dengan squat, hanya saja Anda akan memanfaatkan tembok. Adapun manfaat gerakan wall sit adalah meningkatkan kekuatan otot sekaligus daya tahan tubuh bagian bawah, terutama paha dan tungkai.
+
+        Lalu, bagaimanakah cara melakukan wall sit? Simak langkah-langkahnya berikut ini.
+        
+        Pertama, berdirilah dengan menyandarkan punggung ke sebuah tembok.
+        Posisikan kedua kaki Anda selebar bahu dan beri jarak sekitar 60 hingga 70 centimeter dari tembok tersebut.
+        Kemudian, geser punggung Anda ke bawah secara perlahan sambil memastikan punggung tetap menempel.
+        Jika posisi paha sudah sejajar dengan lantai seperti seolah-olah Anda sedang duduk di kursi, tahan gerakan tersebut selama 20 sampai 60 detik.
+        Pastikan kedua kaki menapak lantai dengan kokoh.
+        Setelah itu, geser kembali punggung Anda hingga ke posisi berdiri seperti di awal.
+        Ulangi langkah-langkah tersebut berulang dengan jeda waktu sekitar 30 detik setiap gerakannya.</p>
+    </div>
+
+    <div class="perbagian">
+    <h4> 5. Plank </h4>
+    <p>Gerakan workout untuk pemula selanjutnya ialah plank. Latihan ini membantu membangun kekuatan pada otot inti, atas, maupun bawah. Selain itu, manfaat plank bagi tubuh juga sekaligus memperbaiki postur tubuh serta meregangkan otot.
+
+        Namun, untuk mendapat berbagai manfaat gerakan plank tersebut, Anda tentu harus melatihnya dengan benar. Berikut langkah-langkahnya.
+        
+        Awali dengan posisi seperti ingin melakukan gerakan push up, di mana lengan dan ujung kaki menopang tubuh
+        Tekuk lengan Anda hingga membentuk 90 derajat, sehingga lutut menjadi tumpuan
+        Hadapkan wajah ke arah bawah dan pastikan bahu Anda tetap rileks.
+        Selain itu, jaga tubuh dalam garis lurus selama posisi plank. Jangan sampai punggung atau kepala menurun.
+        Pertahankan posisi tersebut sekitar 10 detik, lalu lepaskan.
+        Ulangi gerakan tersebut dari awal.</p>
+    </div>
+
+    <div class="perbagian">
+        <h4 class="text-end"> 6. Jumping Jacks </h4>
+        <p>Ada pula jumping jack atau juga dikenal dengan sebutan star jump. Gerakan workout untuk pemula satu ini pada dasarnya ditujukan untuk melatih kekuatan tubuh dan kardiovaskular.
+
+            Cara melakukannya pun sangat bervariasi, adapun bagi pemula langkah-langkah jumping jack adalah sebagai berikut.
+            
+            Pertama, berdiri tegak dengan posisi kaki menempel dan tangan merapat pada kedua sisi tubuh.
+            Kemudian, lompatlah dengan kaki terbuka lebar ke samping kanan dan kiri.
+            Bersamaan dengan lompatan tersebut, angkat tangan Anda ke atas kepala layaknya ingin bertepuk tangan.
+            Lalu, tubuh mendarat dan kembali ke posisi awal.
+            Lakukan gerakan tersebut berulang-ulang.</p>
+    </div>
+
+    <div class="perbagian">
+        <h4> 7. Abdominal Crunch </h4>
+        <p>Rekomendasi latihan workout untuk pemula yang terakhir adalah abdominal crunch. Gerakan ini cukup mirip dengan sit up, di mana tujuannya ialah untuk dapat membentuk otot perut sekaligus membakar lemak-lemak di daerah tersebut.
+
+            Jika ingin melakukan abdominal crunch, cara melakukannya dengan benar ialah sebagai berikut.
+            
+            Pertama, baring telentang sambil menekukkan lutut dan kaki menapak lantai.
+            Letakkan kedua tangan di depan dada dengan posisi menyilang
+            Angkat punggung atas atau bahu dari lantai sekitar 10 centimeter, sementara punggung bawah tetap pada permukaan.
+            Tahan posisi tersebut beberapa saat kemudian turunkan kembali secara perlahan.
+            Ulangi beberapa kali.</p>
+    </div>
+
+    <h3> KOMENTAR </h3>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <div class="komen">
+        <div class="bg-light p-2">
+            <div class="d-flex flex-row align-items-start"><img class="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" width="40"><input type="text" placeholder="..." class="form-control ml-1 shadow-none textarea" id="komen" style="height: 100px"></div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <div class="mt-2 text-right">
+                <button type="button" class="btn btn-primary" id="addcomment">Add Comment</button>
+            </div>
+            </div>
+        </div>
+    </div>
+    </form>
+    <div class="comment_list"></div>
+</body>
+{% endblock content %}

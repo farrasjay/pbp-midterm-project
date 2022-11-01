@@ -1,0 +1,218 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+<title>Infografis</title>
+<style>
+    h1 {
+        text-align:center;
+        margin: 100px 100px 100px 100px;
+    }
+    h4 {
+        margin: 200px 100px 100px 100px;
+    }
+    p {
+        margin: 100px 100px 200px 100px;
+    }
+    button {
+        margin: 100px 100px 100px 100px;
+    }
+    .btn btn-primary {
+        margin: 100px 100px 100px 100px;
+    }
+    h3 {
+        margin: 50px 50px 50px 50px;
+    }
+    .card {
+        margin: 10px 50px 10px 50px;
+    }
+    .komen {
+        margin: 10px 50px 10px 50px;
+    }
+    .rounded-circle {
+        margin: 5px 10px 5px 3px;
+    }
+    .image{
+        justify-content:center;
+    }
+    .perbagian {
+        margin: 50px 50px 50px 50px;
+    }
+</style>
+{% endblock meta %}
+
+{% block content %}
+<head>
+    <script src=
+    "https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+        </script>
+          
+        <!-- Script to get JSON file and display its content -->
+        <script type="text/javascript" language="javascript">
+        $(document).ready(function() {
+            $.get("/infografis/jsonkedua/", function(comment) {
+                console.log(comment)
+                for (i = 0; i < comment.length; i++){
+                    $(".comment_list").append(`
+                    <div class="card">
+                        <div class="d-flex flex-column comment-section">
+                            <div class="bg-white p-2">
+                                <div class="card-header">
+                                <div class="d-flex flex-row user-info"><img class="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" width="40">
+                                    <div class="d-flex flex-column justify-content-start ml-2"><span class="d-block font-weight-bold name">${comment[i].fields.nama}</span><span class="date text-black-50">${comment[i].fields.date}</span></div>
+                                </div>
+                                </div>
+                                <div class="card-body">
+                                <div class="mt-2">
+                                    <p class="comment-text">${comment[i].fields.comment}</p>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            `)
+                }
+            });
+            $("#addcomment").click(function(){
+                $.post("/infografis/add_comment2/", {
+                  comment: $('#komen').val()},
+                  function (result) {
+                    $(".comment_list").append(`
+                    <div class="card">
+                        <div class="d-flex flex-column comment-section">
+                            <div class="bg-white p-2">
+                                <div class="card-header">
+                                <div class="d-flex flex-row user-info"><img class="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" width="40">
+                                    <div class="d-flex flex-column justify-content-start ml-2"><span class="d-block font-weight-bold name">${result.fields.nama}</span><span class="date text-black-50">${result.fields.date}</span></div>
+                                </div>
+                                </div>
+                                <div class="card-body">
+                                <div class="mt-2">
+                                    <p class="comment-text">${result.fields.comment}</p>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            `)
+                    $('#komen').val('')
+                  }
+                  )
+                })
+        }); 
+        </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-dark bg-primary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'infografis:infografis' %}">Back</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Dropdown
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled">Disabled</a>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+      
+    <div class="perbagian">
+    <h1> Menu Makanan 4 Sehat 5 Sempurna dan Manfaatnya Bagi Kesehatan </h1>
+    </div>
+    <div align = center>
+        <img src="https://cdn.discordapp.com/attachments/1002595520281325578/1035494618759974912/Screen_Shot_2022-10-28_at_5.05.36_PM.png">
+    </div>
+    <p>   Apa yang dimaksud dengan makanan 4 sehat 5 sempurna? Makanan 4 sehat 5 sempurna adalah program pemerintah yang mengharuskan setiap orang mengonsumsi lebih dari 1 jenis makanan dalam satu waktu.
+
+        Makanan 4 sehat 5 sempurna terdiri dari makanan pokok, lauk pauk, sayur-sayuran, buah-buahan dan juga susu untuk memenuhi kebutuhan nutrisi tubuh.
+        
+        Lalu, apa saja komponen penyusun pola makan 4 sehat 5 sempurna? </p>
+    <div class="perbagian">
+    <h4> 1. Makanan Pokok </h4>
+    <p> Makanan pokok merupakan makanan yang kaya akan karbohidrat, suatu zat yang sangat diperlukan tubuh untuk membuat energi. Di Indonesia, makanan pokok umumnya berupa nasi, tetapi di beberapa daerah, makanan pokok jenis lain juga dikonsumsi seperti contohnya, kombinasi beras dan jagung yang umum dikonsumsi di Madura dan sagu di Papua. </p>
+    </div>
+    
+    <div class="perbagian">
+    <h4 class="text-end"> 2. Lauk Pauk </h4>
+    <p> Lauk pauk merupakan bahan makanan yang mengandung kadar protein tinggi. Pada usia tumbuh kembang anak, protein sangat diperlukan untuk membangun tubuh. Sedangkan pada usia dewasa, protein dapat diubah menjadi cadangan energi. Selain itu, protein juga menjadi salah satu zat yang penting untuk sistem kekebalan tubuh.
+
+        Protein dapat diperoleh dari dua jenis makanan, yakni nabati dan hewani. Protein nabati umumnya berasal dari kacang-kacangan dan olahannya, seperti tahu dan tempe yang merupakan olahan dari kacang kedelai. Sementara itu, protein hewani dapat diperoleh dengan mengonsumsi daging dan olahannya.
+        
+        Namun, konsumsi protein hewani sebaiknya dibatasi karena sumber protein hewani juga mengandung lemak dan kolesterol yang dapat berbahaya bagi tubuh jika dikonsumsi berlebih. Protein dari daging unggas dan makanan laut lebih sehat dibanding daging merah.</p>
+    </div>
+
+    <div class="perbagian">
+    <h4> 3. Sayuran </h4>
+    <p> Selain memiliki kandungan serat yang baik untuk proses pencernaan, sayuran juga mengandung berbagai vitamin dan mineral yang diperlukan oleh tubuh untuk bekerja dengan baik. Misalnya, wortel kaya akan vitamin A yang diperlukan untuk mata, sementara bayam mengandung vitamin A, vitamin B kompleks, vitamin C, vitamin E, dan vitamin K. Agar lebih mudah dalam memilah manfaat dan kegunaan sayur dan buah, berikut klasifikasi manfaat sayur dan buah berdasarkan warnanya.
+
+        Warna Merah: Sayur dan buah yang berwarna merah memiliki kandungan nutrisi yang berguna untuk melindungi tubuh dari virus, memperlancar aliran darah ke jantung, dan mencegah penuaan dini. Selain itu, kandungan lainnya dalam sayur dan buah adalah lycopene yang ditemukan dalam semangka dan tomat. Lycopene dikenal dapat menangkal penyakit kanker prostat. Sayur dan buah yang memiliki warna merah misalnya stroberi, pepaya, tomat, jambu, anggur, dan semangka.
+        Warna Hijau: Sayur dan buah yang berwarna hijau kaya akan serat dan kandungan sulfur yang membantu hati mendetoksifikasi zat berbahaya yang berpotensi sebagai penyebab kanker. Selain itu, sayur dan buah yang berwarna hijau dapat melindungi perempuan dari kanker ovarium. Sayur dan buah hijau baik untuk kesehatan jantung karena kandungan kalium yang tinggi. Sayur dan buah yang berwarna hijau misalnya adalah bayam, sawi, kangkung, timun, seledri, daun singkong, pare, atau brokoli.
+        Warna Putih: Sayur dan buah yang berwarna putih dapat kamu temukan banyak khasiat dan nutrisi yang sehat untuk tubuh. Baik bawang merah maupun bawang putih adalah anggota keluarga allium yang dapat menurunkan gula darah dan memiliki sifat anti-bakteri dan anti-inflamasi. Selain itu, juga terdapat zat allicin pada sayur dan buah yang berwarna putih yang berfungsi sebagai pereda pilek atau flu. Beberapa sayur dan buah yang berwarna putih yang bisa kamu konsumsi di antaranya adalah kembang kol, pir, turnip, atau bawang putih.
+        Warna Biru dan Ungu: Sayur dan buah yang berwarna biru dan ungu bukanlah pilihan yang populer dibanding warna lainnya. Meski begitu, sayur dan buah yang berwana biru dan ungu merupakan pelindung tubuh terhadap beberapa penyakit kanker, baik untuk kesehatan saluran kemih, dan memelihara daya ingat. Sayur dan buah berwarna biru dan ungu mengandung anthocyanins flavanoids yang berfungsi sebagai anti karsinogen yang memusnahkan bibit penyakit kanker pada tubuh. Sayur dan buah yang berwarna biru dan ungu misalnya terong, anggur, atau bluberi.
+        Saat mengonsumsi sayuran, perlu diperhatikan juga kebersihan dari sayuran yang akan dikonsumsi karena sayuran dapat terpapar pestisida atau zat berbahaya lainnya. Pastikan sayuran yang akan dikonsumsi telah dibersihkan terlebih dahulu sebelum dikonsumsi.</p>
+    </div>
+    
+    <div class="perbagian">
+    <h4 class="text-end"> 4. Buah-Buahan </h4>
+    <p> Konsumsi buah-buahan tidak kalah pentingnya dengan sayuran dan bahan makanan lain. Seperti sayuran, buah-buahan juga kaya akan serat dan vitamin yang diperlukan oleh tubuh untuk menjaga kesehatan. Contohnya, buah jeruk kaya akan vitamin C, sementara buah naga mengandung zat besi yang diperlukan untuk mencegah anemia.
+
+        Meskipun dianggap mewah, sebenarnya kita dapat mengonsumsi buah-buahan dengan harga terjangkau. Indonesia diberkahi dengan tanah yang subur dan iklim tropis, yang memungkinkan berbagai jenis tanaman buah tumbuh subur. Buah-buahan musiman seperti mangga dan duku, atau buah yang tersedia sepanjang tahun seperti pisang, dapat diperoleh dengan mudah dan murah.</p>
+    </div>
+
+    <div class="perbagian">
+    <h4> 5. Susu </h4>
+    <p> Susu adalah minuman yang cocok sebagai pelengkap asupan gizi karena memiliki kandungan protein yang cukup tinggi. Susu merupakan asupan kalsium, yang berperan penting untuk menjaga keutuhan tulang. Namun, perlu diingat pula bahwa tidak semua orang dapat mengonsumsi susu karena beberapa orang dapat mengalami intoleransi laktosa yang menyebabkan penderitanya tidak dapat mencerna laktosa, zat yang banyak terkandung pada susu. Berikut susu yang biasa di konsumsi:
+
+        Susu Kedelai
+        Susu kedelai memiliki kandungan lemak jenuh yang rendah. Jika kamu sedang dalam program diet, susu kedelai dapat membantu karena cocok dijadikan susu pengganti susu sapi.
+        
+        Susu Almond
+        Susu dari kacang almond cocok dikonsumsi oleh kamu yang alergi pada laktosa. Laktosa yang berlebih dapat menyebabkan produksi gas dan diare.
+        
+        Susu Sapi
+        Susu sapi mengandung kalori yang cukup banyak, yaitu berkisar antara 80-150 kalori. Susu sapi baik untuk menambah energi bagi perempuan saat sedang PMS serta dapat mengurangi stres.
+        
+        Setelah mengetahui manfaat dari masing-masing elemen 4 sehat 5 sempurna, kini saatnya kita untuk mencocokkan menu makanan sehari-hari agar masing-masing elemen tersebut terpenuhi. Lengkapi juga dengan Program 12 Hari Realfood yang lengkap menjaga Realfoodfam dan keluarga tercinta. </p>
+    </div>
+
+    <h3> KOMENTAR </h3>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <div class="komen">
+        <div class="bg-light p-2">
+            <div class="d-flex flex-row align-items-start"><img class="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" width="40"><input type="text" placeholder="..." class="form-control ml-1 shadow-none textarea" id="komen" style="height: 100px"></div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <div class="mt-2 text-right">
+                <button type="button" class="btn btn-primary" id="addcomment">Add Comment</button>
+            </div>
+            </div>
+        </div>
+    </div>
+    </form>
+    <div class="comment_list"></div>
+</body>
+{% endblock content %}

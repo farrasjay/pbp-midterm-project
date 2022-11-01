@@ -11,50 +11,18 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-from uhealths.models import HealthStats
-from uhealths.forms import HealthStatsForm
+from .models import UserHealthStatus
+from .forms import HealthStatsForm
 
 @login_required(login_url='/uhealths/login/')
 def landingpage(request):
     return render(request, 'home.html')
 
-#@login_required(login_url='/uhealths/login/')
-def check_healths_status(request):
-    form = HealthStatsForm()
-    if(request.method == 'POST'):
-        form = HealthStatsForm(request.POST)
-        if form.is_valid:
-            #form.instance.user = request.user
-
-            
-            data = HealthStats.objects.get(user = request.user)
-            if data == None:
-                form.instance.user = request.user
-                form.save()
-            else:
-                clean_data = form.cleaned_data
-                data.age = clean_data['age']
-                data.height = clean_data['height']
-                data.weight = clean_data['weight']
-                data.gender = clean_data['gender']
-                #form.save()
-            bmr = 0
-            if(data.gender == 'male'):
-                bmr = 66.5 + (13.75*data.weight) + (5.003*data.height) -(6.75*data.age)
-            else:
-                bmr = 655.1 + (9,563 *data.weight) + (1.850 * data.height) - (4.676*data.age)
-            bmi = data.weight/(data.height/100)**2
-            HealthStats.objects.filter(user = request.user).update(bmr=bmr,bmi=bmi)
-            
-            return redirect()
-    
-    context = {'form':form}
-    return render(request, 'check.html', context)
-
-
-    
-
-
+def register(request):
+    # logger = logging.getLogger(__name__)
+    # logger.debug("MASUK REGISTER")
+    # print("MASUK REGISTER")
+    form = UserCreationForm()
 
 def register(request):
     form  = UserCreationForm()
@@ -93,41 +61,55 @@ def logout_user(request):
 def main_menu(request):
     return render(request, "menu.html")
 
-def show_json(request):
-   
-    data = HealthStats.objects.filter(user = request.user)
-    
-    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
-def update_data(request):
+@login_required(login_url='/uhealths/login/')
+def show_healthstats(request):
+    return render(request, "show_healthstats.html")
+
+def insert_healthstats(request):
     form = HealthStatsForm()
-    if(request.method == 'POST'):
-        form = HealthStatsForm(request.POST)
-        if form.is_valid:
-            #form.instance.user = request.user
-            data = HealthStats.objects.get(user = request.user)
-            if data == None:
-                form.instance.user = request.user
-                form.save()
-            else:
-                clean_data = form.cleaned_data
-                data.age = clean_data['age']
-                data.height = clean_data['height']
-                data.weight = clean_data['weight']
-                data.gender = clean_data['gender']
-                #form.save()
-            bmr = 0
-            if(data.gender == 'male'):
-                bmr = 66.5 + (13.75*data.weight) + (5.003*data.height) -(6.75*data.age)
-            else:
-                bmr = 655.1 + (9,563 *data.weight) + (1.850 * data.height) - (4.676*data.age)
-            bmi = data.weight/(data.height/100)**2
-            HealthStats.objects.filter(user = request.user).update(bmr=bmr,bmi=bmi)
-            
-            return HttpResponse()
-    return HttpResponse()
+    context = {'form':form}
+    return render(request, 'insert_healthstats.html', context)
+
+def calculate_bmi(height, weight):
+    bmi = weight/(height/100)**2
+    return bmi
+
+def calculate_bmr(gender, age, height, weight):
+    bmr = 0.0
+    if gender.upper() == 'MALE':
+        bmr = 66.5  + (13.7 * weight) + (5 * height) - (6.7 * age)
+    elif gender.upper() == 'FEMALE':
+        bmr = 655 + (9.6 * weight) + (1.8 * height) - (4.7 * age)
+    return bmr
 
 def show_json(request):
-    data = HealthStats.objects.filter(user=request.user)
-    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+    data = serializers.serialize("json", UserHealthStatus.objects.all())
+    return HttpResponse(data, content_type="application/json")
 
+@login_required(login_url='/uhealths/login/')
+def show_healthstats_ajax(request):
+    healthstats_data = UserHealthStatus.objects.filter(user = request.user).order_by('-last_update')[:10]
+    response = serializers.serialize("json", healthstats_data)
+    return HttpResponse(response, content_type="application/json")
 
+@login_required(login_url='/uhealths/login/')
+def post_healthstats_ajax(request):
+    if request.method == 'POST':
+        last_update = datetime.datetime.now()
+        height = float(request.POST['height'])
+        weight = float(request.POST["weight"])
+        age = float(request.POST["age"])
+        gender = request.POST["gender"]
+        calories_intake = request.POST["calories_intake"]
+        
+        # print("USER : " + request.user.id)
+        instance = UserHealthStatus(user = request.user, gender = gender, age = age, height = height, weight = weight, calories_intake = calories_intake, bmr = calculate_bmr(gender, age, height, weight), bmi = calculate_bmi(height, weight), last_update = last_update)
+        instance.save()
+        
+        data = {
+            "message": 'Healthstat submitted successfully!'
+        }
+        json_object = json.dumps(data, indent = 4) 
+
+        return JsonResponse(json.loads(json_object))
+    return redirect("uhealths:insert_healthstats")

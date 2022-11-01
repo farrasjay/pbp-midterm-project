@@ -1,12 +1,7 @@
 from django.shortcuts import render
-from django.urls import reverse
-from django.core import serializers
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
-from django.contrib import messages
-import requests
-
-from faq.models import Question, Like
+from django.http import JsonResponse
+from faq.models import Question
 
 # @login_required(login_url='/uhealths/login/')
 def show_faq_page(request):
@@ -23,13 +18,7 @@ def show_faq_page(request):
     return render(request, "faq.html", context)
 
 def set_session(request, id):
-    data_faq = Question.objects.all()
-    status_user = False
-    user = request.user
-    if request.user.is_authenticated:
-        status_user = True
     recently_viewed_question = None
-
     if 'recently_viewed_ques' in request.session:
         if id in request.session['recently_viewed_ques']:
             request.session['recently_viewed_ques'].remove(id)
@@ -57,8 +46,6 @@ def get_session(request):
         'recently_viewed_question': recently_viewed_question
     }
     return JsonResponse(context)
-
-
 
 def like_unlike_post(request, id):
     user = request.user

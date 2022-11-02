@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'example_app',
     'katalog',
     'infografis',
-    'uhealths'
+    'uhealths',
+    'faq',
+    'forum'
 ]
 
 MIDDLEWARE = [

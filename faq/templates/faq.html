@@ -1,0 +1,194 @@
+{% extends 'base.html' %}
+{% block content %}
+<title>FAQ</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'faq/style.css' %}"/>
+<nav class="navbar navbar-light" style="background-color: #6495ED;">
+    <a class="navbar-brand" href="">uHealths</a>
+        <div class="navbar-nav">
+            <a class="nav-link" href="{% url 'uhealths:home' %}">Home</a>
+            <a class="nav-link" href="#" style="color:blue">Profile</a>
+            <a class="btn btn-outline-light" href="{% url 'uhealths:logout' %}" role="button">Logout</a>
+        </div>
+</nav>
+<div class="container">
+    <h1><br><strong>Frequently Asked Questions</strong></h1>
+    <br>
+    <div class="faq-container">
+
+        {% for data in data_faq %}
+        <div class="card mb-3" style="width: 32rem;">
+            <div class="card-header">
+                <h5><strong> {{data.question}}</strong></h5>
+                <i onclick="showAnswer('{{data.id}}')" class="bi bi-plus-circle-fill" style="font-size: 2rem;"></i>
+            </div>
+                <div class="card-body"> 
+                    <div class="card-text">
+                        <div class="text{{data.id}}">{{data.answer}}</div>
+                    </div>
+                    <form method="POST" class='like-form' id='{{data.id}}'>
+                        {% csrf_token %}
+                        <input type="hidden" name="post_id" value={{data.id}}>
+                        <input type="hidden" id = "id-user" value="{{user.id}}"/>
+                        <input type="hidden" id = "status_user" value="{{data.status_user}}"/>
+                        <div class="button-icon">
+                            <button type="submit" class="btn btn-outline-danger" id="like-btn{{data.id}}">
+                                {% if user not in data.liked.all %}
+                                    Like
+                                {% else %}
+                                    Unlike
+                                {% endif %}
+                            </button>
+                        </div>
+                    </form> 
+                </div>
+                <div class="card-footer mx-auto">
+
+                    <div class=" plus-info">
+                        <div class = icon-image{{data.id}}>
+                            {% if user in data.liked.all %}
+                                <span class = icon-fill{{data.id}}>
+                                    <input type="hidden" id = "status_like" value="1"/>
+                                    <i class="bi bi-heart-fill"></i>
+                                </span>
+                            {% else %}
+                                <span class = icon-heart{{data.id}}>
+                                    <input type="hidden" id = "status_like" value="2"/>
+                                    <i class="bi bi-heart"></i>
+                                </span>
+
+                            {% endif %}
+                        </div>
+                        <div class="count-like">
+                            <div class="like-count{{data.id}}"> {{data.num_likes}}</div>
+                        </div>
+                    </div>
+
+                </div>
+        </div>
+        {% endfor %} 
+    </div>
+</div>
+
+<div class="modal fade" id="modal-login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <b>Warning!</b>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+             
+            <div class="modal-body">
+                <p>Anda Perlu Login</p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+    $( document ).ready(function() {
+        var user =  document.getElementById("id-user").value;
+        $.ajax({
+            url: "faq/get/",
+            type: "GET",
+            dataType: "json",
+            success: (data) => {
+                console.log("berhasil")
+                if(data.recently_viewed_question != null){
+                    for (let i = 1; i <= 12; i++) {
+                        if(!(data.recently_viewed_question).includes(i)){
+                            console.log("berhasil"+i)
+                            $(`.text${i}`).hide();
+                        }
+                    }   
+                }
+                else{
+                    for (let i = 1; i <= 12; i++) {
+                        $(`.text${i}`).hide();
+                    }   
+                }
+
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        });
+    
+
+        $('.like-form').submit(function(e){
+            e.preventDefault()
+      
+            const post_id = $(this).attr('id')
+            
+            const likeText = $(`#like-btn${post_id}`).text()
+            const trim = $.trim(likeText)
+
+            
+            let res;
+            const likes = $(`.like-count${post_id}`).text()
+            const trimCount = parseInt(likes)
+       
+            $.ajax({
+                type: 'POST',
+                url: "faq/like/" + post_id,
+                async: true,
+                data: {
+                    'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+                },
+                
+                success: function(response) {    
+                    var status = document.getElementById("status_user").value;
+                    $(`.icon-heart${post_id}`).toggle("bi-heart")
+                    if(user>0){
+                        
+                        if(trim === 'Unlike') {
+                            $(`#like-btn${post_id}`).text("Like")
+                            res = trimCount - 1
+                            $(`.icon-fill${post_id}`).empty()
+                            $(`.icon-fill${post_id}`).append("<i class='bi bi-heart'></i>")
+                            $(`.icon-fill${post_id}`).toggle("bi-heart")
+                            $(`.icon-heart${post_id}`).empty()
+                            $(`.icon-heart${post_id}`).append("<i class='bi bi-heart'></i>")
+                            $(`.icon-heart${post_id}`).toggle("bi-heart") 
+                        }
+                        else {
+                            $(`#like-btn${post_id}`).text("Unlike")
+                            res = trimCount + 1
+                            $(`.icon-fill${post_id}`).empty()
+                            $(`.icon-fill${post_id}`).append("<i class='bi bi-heart-fill'></i>")
+                            $(`.icon-fill${post_id}`).toggle("bi-heart-fill")
+                            $(`.icon-heart${post_id}`).empty()
+                            $(`.icon-heart${post_id}`).append("<i class='bi bi-heart-fill'></i>")
+                            $(`.icon-heart${post_id}`).toggle("bi-heart-fill")
+                         }
+                        $(`.like-count${post_id}`).text(res)
+                    }
+                    else{
+                        $("#modal-login").modal('show');
+                    }
+
+                },
+                error: function(response) {
+                    
+                    console.log('error', response)
+                }
+            })
+        })
+    });
+    function showAnswer(id){
+        var id_text = parseInt(id)
+        $(`.text${id_text}`).toggle();
+        $.ajax({
+            url: "faq/set/" + id_text,
+            type: "GET",
+            dataType: "json",
+        });
+    }
+</script>
+
+{% endblock content %}

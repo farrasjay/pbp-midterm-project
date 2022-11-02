@@ -1,4 +1,13 @@
-{% extends 'base.html' %}
+{% load static %}
+
+<link href="{% static 'css/styles.css' %}?version=1" rel="stylesheet">
+<link rel=”stylesheet” href=”css/bootstrap-responsive.css”>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 
  {% load static %}
  
@@ -20,12 +29,12 @@
     <body>
         <div class="d-flex" id="wrapper">
             <!-- Sidebar-->
-            <div class="border-end bg-white" id="sidebar-wrapper">
+            <div class="border-end bg-white" id="sidebar-wrapper" style = "background-color: #00468B;">
                 <div class="sidebar-heading border-bottom bg-light">Main Menu</div>
                 <div class="list-group list-group-flush">
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'infografis:infografis' %}">Infographics</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Forum</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">FAQ</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'forum:Forum' %}">Forum</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'faq:faq' %}">FAQ</a>
                 </div>
             </div>
             <!-- Page content wrapper-->
@@ -46,15 +55,9 @@
                 </nav>
                 <!-- Page content-->
                 <div class="container-fluid">
-                    <h1 class="mt-4">Hi {{user.username}}!</h1>
-                    <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
-                    <p>
-                        Make sure to keep all page content within the
-                        <code>#page-content-wrapper</code>
-                        . The top navbar is optional, and just for demonstration. Just create an element with the
-                        <code>#sidebarToggle</code>
-                        ID which will toggle the menu when clicked.
-                    </p>
+                    <h1 class="mt-4">Hello there, {{user.username}}!</h1>
+                    <p></p>
+                    <h3>What are you up to today?</h3>
                 </div>
             </div>
         </div>

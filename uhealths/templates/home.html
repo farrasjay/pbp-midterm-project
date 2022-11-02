@@ -21,13 +21,6 @@
          <!-- Core theme CSS (includes Bootstrap)-->
      </head>
      <body>
-         <!-- Navigation-->
-         <nav class="navbar navbar-light bg-light static-top">
-             <div class="container">
-                 <a class="navbar-brand" href="{% url 'uhealths:home' %}">uHealths</a>
-                 <a class="btn btn-primary" href="{% url 'uhealths:register' %}">Sign Up</a>
-             </div>
-         </nav>
          <!-- Masthead-->
          <header class="masthead">
              <div class="container position-relative">
@@ -151,7 +144,7 @@
                          <h2 class="mb-4">Ready to get started? Sign up now!</h2>
                              <div class="row">
                                 <center>
-                                    <div class="col-auto"><button class="btn btn-primary btn-lg" id="signUp" type="submit" href="{% url 'uhealths:register' %}">Sign Up</button></div>
+                                    <div class="col-auto"><a class="btn btn-dark" href="{% url 'uhealths:register' %}">Sign Up</a></div>
                                 </center>
                             </div>
                         </div>
@@ -164,7 +157,14 @@
              <div class="container">
                  <div class="row">
                      <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
-                         <p class="text-muted small mb-4 mb-lg-0">&copy; uHealths 2022. All Rights Reserved.</p>
+                         <p class="text-muted small mb-4 mb-lg-0">&copy; B09 - PBP Midterm Project 2022. All Rights Reserved.</p>
+                     </div>
+                     <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
+                        <ul class="list-inline mb-0">
+                            <li class="list-inline-item">
+                                <a href="https://github.com/farrasjay/pbp-midterm-project-b09"><i class="bi-github fs-3"></i></a>
+                            </li>
+                        </ul>
                      </div>
                  </div>
              </div>

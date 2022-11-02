@@ -5066,6 +5066,7 @@ textarea.form-control-lg {
   padding-left: 0;
   margin-bottom: 0;
   border-radius: 0.25rem;
+  background-color: #00468B;
 }
 
 .list-group-numbered {
@@ -6866,7 +6867,8 @@ textarea.form-control-lg {
 }
 
 .border-end {
-  border-right: 1px solid #dee2e6 !important;
+  border-right: 1px !important;
+  background-color: #00468B;
 }
 
 .border-end-0 {
@@ -11390,10 +11392,10 @@ footer.footer {
   background: #fccb90;
   
   /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+  background: -webkit-linear-gradient(to right, #128FC8, #00468B);
   
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+  background: linear-gradient(to right, #128FC8, #00468B);
   }
   
   @media (min-width: 768px) {

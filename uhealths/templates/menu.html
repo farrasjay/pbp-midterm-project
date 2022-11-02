@@ -23,9 +23,9 @@
             <div class="border-end bg-white" id="sidebar-wrapper">
                 <div class="sidebar-heading border-bottom bg-light">Main Menu</div>
                 <div class="list-group list-group-flush">
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Infographics</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Forum</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">FAQ</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'infografis:infografis' %}">Infographics</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'forum:Forum' %}">Forum</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'faq:faq' %}">FAQ</a>
                 </div>
             </div>
             <!-- Page content wrapper-->
@@ -46,8 +46,9 @@
                 </nav>
                 <!-- Page content-->
                 <div class="container-fluid">
-                    <h1 class="mt-4">Hi {{user.username}}!</h1>
-                    <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
+                    <h1 class="mt-4">Hello there, {{user.username}}!</h1>
+                    <h2>What are you up to for today?</h2>
+                    <p></p>
                     <p>
                         Make sure to keep all page content within the
                         <code>#page-content-wrapper</code>

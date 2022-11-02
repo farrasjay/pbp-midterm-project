@@ -45,6 +45,13 @@
                 <!-- Page content-->
                 <div class="container-fluid">
                     <h1 class="mt-4">Health Status</h1>
+                    <img src="/static/assets/img/bmitable.png"/>
+                    <img src="/static/assets/img/bmrtable.png"/>
+                    <p></p>
+                        <div class="alert alert-success" role="alert">
+                            <h4 id = warning-title></h4>
+                            <p id = warning-stats></p>
+                        </div>
                     {% csrf_token %}
                     <table id="healthstats-table" class="table table-dark table-hover">
                         <tr>
@@ -69,6 +76,18 @@
 </html>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $.get('/uhealths/ajax', function (data) {
+            $('#warning-title').append(
+            "Congrats! You have posted a new Stats."
+            )
+            $('#warning-stats').append(
+                "For the time being, take a look at our tables up top for comparation!"
+            )
+        });
+    });
+</script>
 <script>
   $(document).ready(function () {
     $.get('/uhealths/ajax', function (data) {

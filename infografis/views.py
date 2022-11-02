@@ -10,15 +10,19 @@ from django.contrib.auth.decorators import login_required
 from infografis.models import *
 from django.views.decorators.csrf import csrf_exempt
 
+@login_required(login_url='/uhealths/login/')
 def infografis(request):
     return render(request, 'infografis.html')
 
+@login_required(login_url='/uhealths/login/')
 def first_artikel(request):
     return render(request, 'first-artikel.html')
 
+@login_required(login_url='/uhealths/login/')
 def second_artikel(request):
     return render(request, 'second-artikel.html')
 
+@login_required(login_url='/uhealths/login/')
 def third_artikel(request):
     return render(request, 'third-artikel.html')
 

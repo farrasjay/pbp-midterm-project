@@ -14,7 +14,6 @@ from django.contrib.auth.decorators import login_required
 from .models import UserHealthStatus
 from .forms import HealthStatsForm
 
-@login_required(login_url='/uhealths/login/')
 def landingpage(request):
     return render(request, 'home.html')
 

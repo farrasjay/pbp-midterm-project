@@ -21,7 +21,8 @@ urlpatterns = [
     path('', include('example_app.urls')),
     path('infografis/', include('infografis.urls')),
     path('uhealths/', include('uhealths.urls')),
-    path('uhealths/faq', include('faq.urls'))
+    path('uhealths/faq', include('faq.urls')),
+    path('forum/', include('forum.urls'))
 ]
 
 # TODO: Implement Routings Here

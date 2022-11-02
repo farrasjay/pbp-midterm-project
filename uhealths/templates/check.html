@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+
+<title>uHealths | Sign Up</title>
+{% endblock meta %}
+{% block content %}
+<script>
+    let myModal
+    $(document).ready(function () {
+    myModal = new bootstrap.Modal('#exampleModal', {
+      keyboard: false
+    })
+
+    $('#check').submit(event => {
+      event.preventDefault()
+      $.ajax({url: "update/",  method: "POST", data: {gender: $('#gender').val(),description: $('#description').val()},headers: {
+          "X-CSRFToken": window.CSRF_TOKEN
+        },
+        
+
+        success: function (json) {
+          myModal.hide()
+          reloadList()
+        },
+
+        error: function (xhr, errmsg, err) {
+          // $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: " + errmsg +
+          //   " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
+          console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+        }
+      });
+
+    })
+  })
+
+</script>
+
+<h1 class = "display-5 mb-4 pt-3" style="text-align: center;">Data</h1>
+<form method="POST" id="check" >  
+    {% csrf_token %}  
+    <table class="table table-striped">
+        {{ form.as_table }}  
+        <tr>  
+            <td ></td>
+            <!--<td><input class="btn btn-primary" type="submit" name="submit" value="status"/></td> -->
+            <td> 
+                <div class="mb-4" style="text-align: center;">
+                    <input type="submit" class="btn btn-primary" style="color: white;" data-bs-toggle="modal" data-bs-target="#exampleModal"> 
+                </input>
+                  
+                    <a class="btn btn-danger" style="color: white;" href="{% url 'uhealths:home' %}">close</a>
+                  </div>
+                  
+            </td>
+
+
+        </tr>  
+    </table>  
+</form>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h1 class="display-5 mb-4 pt-3" style="text-align: center;">
+            <script>
+            $.get("{% url 'uhelaths: show_json' %} ",function(data){
+                $.each(data,function(value){
+                    "<h4> </h4>"
+                })
+            })
+            </script>
+          </h1>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock content %}

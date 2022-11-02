@@ -19,7 +19,7 @@
         "model": "faq.question",
         "pk": 3,
         "fields": {
-            "question" : "What is a 'healthy diet'? ",
+            "question" : "What is a 'healthy diet'?                   ",
             "answer" : "A healthy eating pattern is one that provides enough of each essential nutrient from nutrient-dense foods, contains a variety of foods from all of the basic food groups, and focuses on balancing calories consumed with calories expended to help you achieve and sustain a healthy weight. This eating pattern limits intake of solid fats, sugar, salt (sodium) and alcohol."
         }
     },

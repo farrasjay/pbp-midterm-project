@@ -1,3 +1,7 @@
+
+import datetime, json
+from distutils.command.clean import clean
+import imp
 import datetime, json, logging
 from django.urls import reverse
 from django.core import serializers
@@ -10,6 +14,7 @@ from django.contrib.auth.decorators import login_required
 from .models import UserHealthStatus
 from .forms import HealthStatsForm
 
+@login_required(login_url='/uhealths/login/')
 def landingpage(request):
     return render(request, 'home.html')
 
@@ -19,12 +24,13 @@ def register(request):
     # print("MASUK REGISTER")
     form = UserCreationForm()
 
+def register(request):
+    form  = UserCreationForm()
     if request.method == "POST":
-        # print(form.is_valid())
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Akun berhasil teregister!')
+            messages.success(request, 'Akun telah berhasil dibuat!')
             return redirect('uhealths:login')
     
     context = {'form':form}

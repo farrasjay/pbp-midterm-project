@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
-from faq.models import Question
+from faq.models import Question, QuestionForm
+from faq.forms import SendQuestionForm
 
 # @login_required(login_url='/uhealths/login/')
 def show_faq_page(request):
@@ -64,3 +65,19 @@ def like_unlike_post(request, id):
             return redirect('faq:faq')
 
     return redirect('faq:faq')
+
+def send_question(request):
+    form = SendQuestionForm()
+    context = ""
+    if request.method == "POST":
+        question = request.POST.get("question")
+        if(question!=context and request.user!=None):
+            user = request.user
+            new_data = QuestionForm(user_form=user, question_in_form=question)
+            new_data.save()
+            context = {
+            'question': question
+            }
+            return JsonResponse(context)
+
+    return  redirect("faq:faq")

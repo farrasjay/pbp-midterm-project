@@ -9,86 +9,71 @@
 
 {% block content %}
 <body>
-  <nav class="navbar navbar-dark bg-primary">
+  <nav class="navbar" style="background-color:#1AA7EC">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="/uhealths/home/" style="font-weight:700"><span style="color:#FFE45C">U</span><span style="color:#FFFFFF">HEALTHS</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled">Disabled</a>
-          </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/infografis/infografis/">Infografis</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">FAQ</a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link" href="#">Forum Diskusi</a>
+        </li>
         </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-      </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                <li class="nav-item"><a class="nav-link" href="/uhealths/profile/" style="color:blue">Profile</a></li>
+                <li class="nav-item"><a class="nav-link" href="/uhealths/logout/" style="color:red">Logout</a></li>
+            </ul>
+        </div>
     </div>
-  </nav>
+    </div>
+</nav>
 
-    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        </div>
-        <div class="carousel-inner">
-          <div class="carousel-item active" onclick="location.href='/infografis/artikel1/'">
-            <img src="https://cdn.discordapp.com/attachments/1002595520281325578/1034813222001319946/Minimalist_Watercolor_Green_Thank_You_Card_-3.jpg" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-              <h5>5 Tips Sederhana Memulai Pola Hidup Sehat</h5>
-              <p>Jaman sekarang,orang-orang sudah mulai menyadari kembali betapa pentingnya memiliki pola hidup sehat. 
-                Nah, berikut adalah 5 cara sederhana agar kalian bisa memulai pola hidup sehat versi kalian. Yuk cari tahu lebih dalam !
-              </p>
-            </div>
+<section id="hero-slider" class="hero-slider">
+  <div class="container-md aos-init aos-animate" data-aos="fade-in">
+    <div class="row"><div class="col-12">
+      <div class="swiper sliderFeaturedPosts swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
+        <div class="swiper-wrapper" id="swiper-wrapper-a53c16f8c280109c3" aria-live="off" style="transition-duration: 0ms; transform: translate3d(-2592px, 0px, 0px);">
+          <div class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="3" role="group" aria-label="4 / 4" style="width: 1296px;"> 
+            <a href="single-post.html" class="img-bg d-flex align-items-end" style="background-image: url('https://cdn.discordapp.com/attachments/1002595520281325578/1034813222001319946/Minimalist_Watercolor_Green_Thank_You_Card_-3.jpg);">
+              <div class="img-bg-inner">
+                <h2>9 Half-up/half-down Hairstyles for Long and Medium Hair</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem neque est mollitia! Beatae minima assumenda repellat harum vero, officiis ipsam magnam obcaecati cumque maxime inventore repudiandae quidem necessitatibus rem atque.</p>
+              </div>
+            </a>
           </div>
-          <div class="carousel-item" onclick="location.href='/infografis/artikel2/'">
-            <img src="https://cdn.discordapp.com/attachments/1002595520281325578/1034813240728899684/Minimalist_Watercolor_Green_Thank_You_Card_-2.jpg" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-              <h5>Menu Makanan 4 Sehat 5 Sempurna dan Manfaatnya Bagi Kesehatan</h5>
-              <p>Makan makanan yang sehat merupakan salah satu faktor untuk memiliki pola hidup yang sehat juga sehingga penting nih untuk mengetahui
-                makanan 4 sehat 5 sempurna dan apa ajasih manfaatnya ? Check it out!!
-              </p>
-            </div>
+          <div class="swiper-slide swiper-slide-prev" data-swiper-slide-index="0" role="group" aria-label="1 / 4" style="width: 1296px;">
+            <a href="single-post.html" class="img-bg d-flex align-items-end" style="background-image: url('assets/img/post-slide-1.jpg');">
+              <div class="img-bg-inner">
+                <h2>The Best Homemade Masks for Face (keep the Pimples Away)</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem neque est mollitia! Beatae minima assumenda repellat harum vero, officiis ipsam magnam obcaecati cumque maxime inventore repudiandae quidem necessitatibus rem atque.</p>
+              </div>
+            </a>
           </div>
-          <div class="carousel-item" onclick="location.href='/infografis/artikel3/'">
-            <img src="https://cdn.discordapp.com/attachments/1002595520281325578/1034813201335988294/Minimalist_Watercolor_Green_Thank_You_Card_.jpg" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-              <h5>7 Gerakan Workout untuk Pemula di Rumah, Mudah dan Praktis !</h5>
-              <p>Workout harus di GYM ? kata siapa ? Ini ada kok 7 gerakan workout yang dapat dilakukan dirumah, sangat praktis!
-                Lets check it out guys!!
-              </p>
-            </div>
+          <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="1" role="group" aria-label="2 / 4" style="width: 1296px;">
+            <a href="single-post.html" class="img-bg d-flex align-items-end" style="background-image: url('assets/img/post-slide-2.jpg');">
+              <div class="img-bg-inner">
+                <h2>17 Pictures of Medium Length Hair in Layers That Will Inspire Your New Haircut</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem neque est mollitia! Beatae minima assumenda repellat harum vero, officiis ipsam magnam obcaecati cumque maxime inventore repudiandae quidem necessitatibus rem atque.</p>
+              </div> 
+            </a>
           </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
+          <div class="swiper-slide swiper-slide-next" data-swiper-slide-index="2" role="group" aria-label="3 / 4" style="width: 1296px;">
+            <a href="single-post.html" class="img-bg d-flex align-items-end" style="background-image: url('assets/img/post-slide-3.jpg');">
+              <div class="img-bg-inner">
+                <h2>13 Amazing Poems from Shel Silverstein with Valuable Life Lessons</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem neque est mollitia! Beatae minima assumenda repellat harum vero, officiis ipsam magnam obcaecati cumque maxime inventore repudiandae quidem necessitatibus rem atque.</p>
+              </div>
+            </a>
+          </div>
+          </section>
 </body>
 {% endblock content %}

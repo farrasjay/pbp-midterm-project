@@ -4,11 +4,24 @@
 <title>Infografis</title>
 <style>
     h1 {
-        text-align:center;
         margin: 100px 100px 100px 100px;
+        font-family: "Arial Black", Gadget, sans-serif;
+        font-size: 40px;
+        letter-spacing: -0.6px;
+        word-spacing: -2.6px;
+        color: #2c3895;
+        font-weight: 400;
+        text-decoration: none solid rgb(68, 68, 68);
     }
     h4 {
         margin: 200px 100px 100px 100px;
+        font-family: "Arial Black", Gadget, sans-serif;
+        font-size: 40px;
+        letter-spacing: -0.6px;
+        word-spacing: -2.6px;
+        color: #2c3895;
+        font-weight: 400;
+        text-decoration: none solid rgb(68, 68, 68);
     }
     p {
         margin: 100px 100px 200px 100px;
@@ -31,11 +44,21 @@
     .rounded-circle {
         margin: 5px 10px 5px 3px;
     }
-    .image{
-        justify-content:center;
-    }
+    img {
+        margin: 50px 100px 50px 100px;
+        align: center;
+      }
     .perbagian {
-        margin: 50px 50px 50px 50px;
+        margin: 50px 100px 50px 100px;
+    }
+    .list-order {
+        margin: 0px 100px 50px 100px;
+    }
+    .foto {
+        margin: 10px 100px 10px 100px;
+    }
+    .breadcrumb  d-none d-md-block d-md-flex {
+        margin: 0px 100px 50px 100px;
     }
 </style>
 {% endblock meta %}
@@ -104,54 +127,57 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-dark bg-primary">
+    <nav class="navbar" style="background-color:#1AA7EC">
         <div class="container-fluid">
-          <a class="navbar-brand" href="{% url 'infografis:infografis' %}">Back</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" href="/uhealths/home/" style="font-weight:700"><span style="color:#FFE45C">U</span><span style="color:#FFFFFF">HEALTHS</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled">Disabled</a>
-              </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/infografis/infografis/">Infografis</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">FAQ</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link" href="#">Forum Diskusi</a>
+            </li>
             </ul>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-          </div>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="/uhealths/profile/" style="color:blue">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/uhealths/logout/" style="color:red">Logout</a></li>
+                </ul>
+            </div>
         </div>
-      </nav>
+        </div>
+  </nav>
+
+  <div class="perbagian">
+    <ol class="breadcrumb  d-none d-md-block d-md-flex">
+        <li class="breadcrumb-item "><a href="/uhealths/home/">home</a></li>
+        <li class="breadcrumb-item "><a href="/infografis/infografis">infografis</a></li>
+        <li class="breadcrumb-item "><a href="/infografis/artikel1/">7 Gerakan Workout untuk Pemula di Rumah, Mudah dan Praktis !</a></li>
+      </ol>
+    </div>
       
     <div class="perbagian">
     <h1> 7 Gerakan Workout untuk Pemula di Rumah, Mudah dan Praktis !</h1>
+    <p class="date text-muted category caption">Workout - 02 November 2022</p>
     </div>
     <div align = center>
         <img src="https://cdn.discordapp.com/attachments/1002595520281325578/1035525177729101925/Screen_Shot_2022-10-28_at_7.05.39_PM.png">
     </div>
+    <div class="perbagian">
     <p>Workout adalah salah satu cara paling praktis yang bisa Anda lakukan ketika ingin berolahraga di rumah. Sebab, ada berbagai latihan workout untuk pemula dengan gerakan-gerakan sederhana yang tentunya dapat mudah Anda pelajari.
 
         Meski demikian, workout termasuk olahraga yang dapat membantu tubuh membakar lebih banyak kalo dalam waktu singkat dibanding jenis lainnya. Lantas, apa saja gerakan workout untuk pemula tersebut?
         
         Yuk, langsung saja simak rekomendasi beserta tips-tipsnya di bawah ini!</p>
+    </div>
+    
     <div class="perbagian">
     <h4> 1. Push Up </h4>
     <p>Push up adalah salah satu latihan workout untuk pemula yang cukup efektif dalam mengencangkan otot-otot tubuh, terutama pada bagian dada, trisep, lengan, dan depan bahu.

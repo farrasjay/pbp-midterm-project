@@ -3,15 +3,17 @@
 {% block meta %}
 <title>Infografis</title>
 <style>
-    
+  .perbagian {
+    margin: 50px 100px 50px 100px;
+}
 </style>
 {% endblock meta %}
 
 {% block content %}
 <body>
-  <nav class="navbar" style="background-color:#1AA7EC">
+  <nav class="navbar navbar-expand-lg bg-light" style="background-color:#1AA7EC">
     <div class="container-fluid">
-    <a class="navbar-brand" href="/uhealths/home/" style="font-weight:700"><span style="color:#FFE45C">U</span><span style="color:#FFFFFF">HEALTHS</span></a>
+    <a class="navbar-brand" href="/uhealths/home/" style="font-weight:700"><span style="color:#FFE45C">U</span><span style="color:#blue">HEALTHS</span></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -37,43 +39,49 @@
     </div>
 </nav>
 
-<section id="hero-slider" class="hero-slider">
-  <div class="container-md aos-init aos-animate" data-aos="fade-in">
-    <div class="row"><div class="col-12">
-      <div class="swiper sliderFeaturedPosts swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
-        <div class="swiper-wrapper" id="swiper-wrapper-a53c16f8c280109c3" aria-live="off" style="transition-duration: 0ms; transform: translate3d(-2592px, 0px, 0px);">
-          <div class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="3" role="group" aria-label="4 / 4" style="width: 1296px;"> 
-            <a href="single-post.html" class="img-bg d-flex align-items-end" style="background-image: url('https://cdn.discordapp.com/attachments/1002595520281325578/1034813222001319946/Minimalist_Watercolor_Green_Thank_You_Card_-3.jpg);">
-              <div class="img-bg-inner">
-                <h2>9 Half-up/half-down Hairstyles for Long and Medium Hair</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem neque est mollitia! Beatae minima assumenda repellat harum vero, officiis ipsam magnam obcaecati cumque maxime inventore repudiandae quidem necessitatibus rem atque.</p>
-              </div>
-            </a>
+  
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active" onclick="location.href='/infografis/artikel1/'">
+            <img src="https://cdn.discordapp.com/attachments/1002595520281325578/1037352368406282360/1.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <p>Jaman sekarang,orang-orang sudah mulai menyadari kembali betapa pentingnya memiliki pola hidup sehat. 
+                Nah, berikut adalah 5 cara sederhana agar kalian bisa memulai pola hidup sehat versi kalian. Yuk cari tahu lebih dalam !
+              </p>
+            </div>
           </div>
-          <div class="swiper-slide swiper-slide-prev" data-swiper-slide-index="0" role="group" aria-label="1 / 4" style="width: 1296px;">
-            <a href="single-post.html" class="img-bg d-flex align-items-end" style="background-image: url('assets/img/post-slide-1.jpg');">
-              <div class="img-bg-inner">
-                <h2>The Best Homemade Masks for Face (keep the Pimples Away)</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem neque est mollitia! Beatae minima assumenda repellat harum vero, officiis ipsam magnam obcaecati cumque maxime inventore repudiandae quidem necessitatibus rem atque.</p>
-              </div>
-            </a>
+          <div class="carousel-item" onclick="location.href='/infografis/artikel2/'">
+            <img src="https://cdn.discordapp.com/attachments/1002595520281325578/1037352386408226897/2.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <p>Makan makanan yang sehat merupakan salah satu faktor untuk memiliki pola hidup yang sehat juga sehingga penting nih untuk mengetahui
+                makanan 4 sehat 5 sempurna dan apa ajasih manfaatnya ? Check it out!!
+              </p>
+            </div>
           </div>
-          <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="1" role="group" aria-label="2 / 4" style="width: 1296px;">
-            <a href="single-post.html" class="img-bg d-flex align-items-end" style="background-image: url('assets/img/post-slide-2.jpg');">
-              <div class="img-bg-inner">
-                <h2>17 Pictures of Medium Length Hair in Layers That Will Inspire Your New Haircut</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem neque est mollitia! Beatae minima assumenda repellat harum vero, officiis ipsam magnam obcaecati cumque maxime inventore repudiandae quidem necessitatibus rem atque.</p>
-              </div> 
-            </a>
+          <div class="carousel-item" onclick="location.href='/infografis/artikel3/'">
+            <img src="https://cdn.discordapp.com/attachments/1002595520281325578/1037352404460507237/3.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <p>Workout harus di GYM ? kata siapa ? Ini ada kok 7 gerakan workout yang dapat dilakukan dirumah, sangat praktis!
+                Lets check it out guys!!
+              </p>
+            </div>
           </div>
-          <div class="swiper-slide swiper-slide-next" data-swiper-slide-index="2" role="group" aria-label="3 / 4" style="width: 1296px;">
-            <a href="single-post.html" class="img-bg d-flex align-items-end" style="background-image: url('assets/img/post-slide-3.jpg');">
-              <div class="img-bg-inner">
-                <h2>13 Amazing Poems from Shel Silverstein with Valuable Life Lessons</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem neque est mollitia! Beatae minima assumenda repellat harum vero, officiis ipsam magnam obcaecati cumque maxime inventore repudiandae quidem necessitatibus rem atque.</p>
-              </div>
-            </a>
-          </div>
-          </section>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    
+
 </body>
 {% endblock content %}

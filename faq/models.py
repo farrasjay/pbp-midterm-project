@@ -17,4 +17,8 @@ class Question(models.Model):
 class Like(models.Model): 
     user_like = models.ForeignKey(User, on_delete=models.CASCADE)
     question_like = models.ForeignKey(Question, on_delete=models.CASCADE)
-    
+
+class QuestionForm(models.Model):
+    user_form = models.ForeignKey(User, on_delete=models.CASCADE)
+    question_in_form = models.TextField()
+

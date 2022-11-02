@@ -14,7 +14,9 @@
     flex-direction:row-reverse;
     padding: 1px;
 }
-
+#btn-question{
+    margin-bottom: 20px;
+}
 .faq-container{
     display: flex;
     flex-wrap: wrap;
@@ -45,19 +47,21 @@
     padding-inline: 15px;
     display: flex;
     flex-direction:row;
+
 }
 .card:hover{
     transform: scale(1.025);
     box-shadow: 5px 6px 6px 2px #e9ecef;
+    opacity: 1;
 }
 .card-header {
-    background-color: #2C3895;
+    background-color: #00468B;
     color :#ffffff;
     
 }
 .card-body {
     margin-bottom: 1px;
-    background-color: #ffffff;
+    opacity: 0.8;
     display: flex;
     flex-direction:column;
 }
@@ -65,9 +69,12 @@
 .card-text {
     text-align: justify;
 }
+.card-footer{
+    background-color:  #FFE45C;
+}
 
 .bi:hover {
-    color: darkblue;
+    color: #FFE45C;
 }
 
 body{

@@ -7,14 +7,7 @@
 
 {% load static %}
 <link rel="stylesheet" href="{% static 'faq/style.css' %}"/>
-<nav class="navbar navbar-light" style="background-color: #6495ED;">
-    <a class="navbar-brand" href="">uHealths</a>
-        <div class="navbar-nav">
-            <a class="nav-link" href="{% url 'uhealths:home' %}">Home</a>
-            <a class="nav-link" href="#" style="color:blue">Profile</a>
-            <a class="btn btn-outline-light" href="{% url 'uhealths:logout' %}" role="button">Logout</a>
-        </div>
-</nav>
+
 <div class="container">
     <h1><br><strong>Frequently Asked Questions</strong></h1>
     <br>
@@ -60,7 +53,6 @@
                                     <input type="hidden" id = "status_like" value="2"/>
                                     <i class="bi bi-heart"></i>
                                 </span>
-
                             {% endif %}
                         </div>
                         <div class="count-like">
@@ -88,13 +80,48 @@
         </div>
     </div>
 </div>
+<center>
+    <button id="btn-question" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-question">
+        Send Your Question             
+        <i class="bi bi-plus-circle" ></i>
+    </button>
+</center>
+
+<div class="modal fade" id="add-question" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add Question</h1>
+                <button id="close-modal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" id="add-quest-form" >  
+                    {% csrf_token %}
+                        <div class="form-floating mb-4 text-black">
+                            <input id="question" type="text" name="question" placeholder="Question" class="form-control form-control-lg" />
+                            <label class="form-label" for="typeEmailX">Question</label>
+                        </div>
+                        {% if not status_user %}
+                            <p style="color:red ;">Anda Perlu Login Untuk Mengirim Pertanyaan</p>
+                        {% endif %}
+                        
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <input class="btn btn-primary" type="submit" name="submit" value="Add"/>
+                        </div>
+                </form>
+            </div>
+    
+        </div>
+    </div>
 </div>
+
 
 <script>
     $( document ).ready(function() {
         var user =  document.getElementById("id-user").value;
         $.ajax({
-            url: "faq/get/",
+            url: "get/",
             type: "GET",
             dataType: "json",
             success: (data) => {
@@ -135,7 +162,7 @@
        
             $.ajax({
                 type: 'POST',
-                url: "faq/like/" + post_id,
+                url: "like/" + post_id,
                 async: true,
                 data: {
                     'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
@@ -170,6 +197,7 @@
                     }
                     else{
                         $("#modal-login").modal('show');
+
                     }
 
                 },
@@ -179,12 +207,36 @@
                 }
             })
         })
+        $('#add-quest-form').submit(function(e) {
+            e.preventDefault();
+            var question = $("#question").val();
+            console.log(question)
+            $.ajax({
+                type: "POST",
+                url: "send_question/",
+                data: {
+                    question: question,
+                    csrfmiddlewaretoken:$('input[name = csrfmiddlewaretoken]').val()
+                },
+                dataType: "json",
+                success: function (response) {
+                    console.log(question)
+                    document.getElementById("close-modal").click();
+                    document.getElementById("add-quest-form").reset();
+                    // $(".modal-backdrop").remove();
+
+                },
+                error: function (error) {
+                    console.log(error);
+                },
+            });
+        });
     });
     function showAnswer(id){
         var id_text = parseInt(id)
         $(`.text${id_text}`).toggle();
         $.ajax({
-            url: "faq/set/" + id_text,
+            url: "set/" + id_text,
             type: "GET",
             dataType: "json",
         });

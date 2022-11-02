@@ -4,11 +4,24 @@
 <title>Infografis</title>
 <style>
     h1 {
-        text-align:center;
         margin: 100px 100px 100px 100px;
+        font-family: "Arial Black", Gadget, sans-serif;
+        font-size: 40px;
+        letter-spacing: -0.6px;
+        word-spacing: -2.6px;
+        color: #2c3895;
+        font-weight: 400;
+        text-decoration: none solid rgb(68, 68, 68);
     }
     h4 {
         margin: 200px 100px 100px 100px;
+        font-family: "Arial Black", Gadget, sans-serif;
+        font-size: 40px;
+        letter-spacing: -0.6px;
+        word-spacing: -2.6px;
+        color: #2c3895;
+        font-weight: 400;
+        text-decoration: none solid rgb(68, 68, 68);
     }
     p {
         margin: 100px 100px 200px 100px;
@@ -32,16 +45,27 @@
         margin: 5px 10px 5px 3px;
     }
     img {
-        margin: 50px 100px 100px 0px;
+        margin: 50px 100px 50px 100px;
+        align: center;
       }
     .perbagian {
-        margin: 50px 50px 50px 50px;
+        margin: 50px 100px 50px 100px;
     }
+    .list-order {
+        margin: 0px 100px 50px 100px;
+    }
+    .foto {
+        margin: 10px 100px 10px 100px;
+    }
+    .breadcrumb  d-none d-md-block d-md-flex {
+        margin: 0px 100px 50px 100px;
+    }
+    
 </style>
 {% endblock meta %}
 
 {% block content %}
-<head>
+<head> 
     <script src=
     "https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
         </script>
@@ -103,53 +127,56 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-dark bg-primary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="{% url 'infografis:infografis' %}">Back</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+    <nav class="navbar" style="background-color:#1AA7EC">
+            <div class="container-fluid">
+            <a class="navbar-brand" href="/uhealths/home/" style="font-weight:700"><span style="color:#FFE45C">U</span><span style="color:#FFFFFF">HEALTHS</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="/infografis/infografis/">Infografis</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">FAQ</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#">Forum Diskusi</a>
+                </li>
                 </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled">Disabled</a>
-              </li>
-            </ul>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-          </div>
-        </div>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="/uhealths/profile/" style="color:blue">Profile</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/uhealths/logout/" style="color:red">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+            </div>
       </nav>
+
+      <div class="perbagian">
+      <ol class="breadcrumb  d-none d-md-block d-md-flex">
+          <li class="breadcrumb-item "><a href="/uhealths/home/">home</a></li>
+          <li class="breadcrumb-item "><a href="/infografis/infografis">infografis</a></li>
+          <li class="breadcrumb-item "><a href="/infografis/artikel1/">5 Tips Sederhana Memulai Pola Hidup Sehat</a></li>
+        </ol>
+      </div>
       
     <div class="perbagian">
-    <h1> 5 Tips Sederhana Memulai Pola Hidup Sehat </h1>
+        <h1 class="title">5 Tips Sederhana Memulai Hidup Sehat</h1>
+        <p class="date text-muted category caption">Pola Hidup Sehat - 02 November 2022</p>
     </div>
-    <table>
-        <tr>
-    <td> <p>Banyak orang yang tidak begitu paham bagaimana caranya menerapkan pola hidup sehat, baik secara fisik dan mental. Padahal, kebiasaan hidup sehat dan bahagia adalah kunci panjang umur.
-    Artinya, semakin bahagia seseorang, maka besar pula kemungkinannya orang tersebut hidup lebih lama. Jadi, yuk mulai terapkan pola hidup sehat dengan berbagai cara atau tips di bawah ini. </p> </th>
-    <td><img src="https://cdn.discordapp.com/attachments/1002595520281325578/1035466209942044692/Screen_Shot_2022-10-28_at_3.12.10_PM.png" width="500" height="350"> </th>
-    </tr>
-    </table>
+
+    <div class="foto">
+    <img src="https://cdn.discordapp.com/attachments/1002595520281325578/1035466209942044692/Screen_Shot_2022-10-28_at_3.12.10_PM.png" class="img-fluid">
+    </div>
+
+    <div class="perbagian">
+    <p>Banyak orang yang tidak begitu paham bagaimana caranya menerapkan pola hidup sehat, baik secara fisik dan mental. Padahal, kebiasaan hidup sehat dan bahagia adalah kunci panjang umur.
+        Artinya, semakin bahagia seseorang, maka besar pula kemungkinannya orang tersebut hidup lebih lama. Jadi, yuk mulai terapkan pola hidup sehat dengan berbagai cara atau tips di bawah ini. </p>
+    </div>
+
     <div class="perbagian">
     <h4> 1. Hindari Stress </h4>
     <p> Macet di jalan, deadline tugas atau kerjaan yang mencekik, keuangan yang tersendat, hubungan asmara yang sedang renggang, dan berbagai prahara hidup lainnya tentu akan membuat Anda stres.
@@ -203,6 +230,14 @@
         Inilah mengapa penting untuk memastikan bahwa kebutuhan cairan Anda terpenuhi setiap hari supaya mencegah dehidrasi.
         
         Bawalah botol minum sendiri ke mana pun Anda pergi. Masukkan botol tersebut ke dalam tas, sehingga Anda tidak akan lupa membawanya ke mana-mana. Selain itu, sediakan juga air putih di meja kerja atau kamar tidur. </p>
+    </div>
+
+    <div class ="perbagian">
+        <p> Artikel Terkait Lainnya : </p>
+        <ul class="list-order">
+            <li><a href="/infografis/artikel2/" >Menu Makanan 4 Sehat 5 Sempurna dan Manfaatnya Bagi Kesehatan</a></li>
+            <li><a href="/infografis/artikel3/">7 Gerakan Workout untuk Pemula di Rumah, Mudah dan Praktis !</a></li>
+        </ul>
     </div>
 
     <h3> KOMENTAR </h3>

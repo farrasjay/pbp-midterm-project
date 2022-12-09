@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import render, redirect
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse
 from faq.models import Question, QuestionForm
 from faq.forms import SendQuestionForm
 from django.core import serializers
@@ -86,17 +86,20 @@ def send_question(request):
 def get_json(request):
     
     faq_json = serializers.serialize("json", Question.objects.all())
+    
+    return HttpResponse(faq_json, content_type="application/json")
+
+def get_status_json(request):
     user = request.user
     user_json = user.id
     status_user = False
     
     if request.user.is_authenticated:
         status_user = True
-
+    
     context = {
-    'data_faq': faq_json,
     'status_user' : status_user,
     'user': user_json
     }
-    
     return JsonResponse(context)
+

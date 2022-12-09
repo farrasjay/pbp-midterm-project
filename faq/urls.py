@@ -10,5 +10,6 @@ urlpatterns = [
     path('/get/', views.get_session, name='get'),
     path('/send_question/', views.send_question, name='send'),
     path('/getjson/', views.get_json, name='getjson'),
+    path('/getstatus/', views.get_status_json, name='getstatus'),
 
 ]

@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from faq.models import Question, QuestionForm
 from faq.forms import SendQuestionForm
+from django.core import serializers
 
 # @login_required(login_url='/uhealths/login/')
 def show_faq_page(request):
@@ -81,3 +82,21 @@ def send_question(request):
             return JsonResponse(context)
 
     return  redirect("faq:faq")
+
+def get_json(request):
+    
+    faq_json = serializers.serialize("json", Question.objects.all())
+    user = request.user
+    user_json = user.id
+    status_user = False
+    
+    if request.user.is_authenticated:
+        status_user = True
+
+    context = {
+    'data_faq': faq_json,
+    'status_user' : status_user,
+    'user': user_json
+    }
+    
+    return JsonResponse(context)

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from django.contrib.auth import authenticate, logout, login as auth_login
+from django.contrib.auth import authenticate, logout, login
 from django.contrib import messages
 from django.urls import reverse
 from django.contrib.auth.forms import UserCreationForm
@@ -29,29 +29,33 @@ def login_user(request):
 
 @csrf_exempt
 def login_flutter(request):
-    username = request.POST['username']
-    password = request.POST['password']
-    user = authenticate(username=username, password=password)
-    if user is not None:
-        if user.is_active:
-            auth_login(request, user)
-            # Redirect to a success page.
-            return JsonResponse({
-            "status": True,
-            "message": "Successfully Logged In!",
-            # "user_id": user.id,
-            # Insert any extra data if you want to pass data to Flutter
-            }, status=200)
-        else:
-            return JsonResponse({
-            "status": False,
-            "message": "Failed to Login, Account Disabled."
-            }, status=401)
+    # print("MASUK DISINI")
+    data = json.loads(request.body)
+    username = data['username']
+    password = data['password']
 
+    if request.method == 'POST':
+        user = authenticate(username=username, password=password)
+        # print("AUTENTHICATE")
+        # print(username)
+        # print(password)
+        if user is not None:
+            login(request, user)
+            return JsonResponse({
+                "status": True,
+                "username": request.user.username,
+                "message": "Successfully Logged In!"
+            }, status=200)
+
+        else:
+             return JsonResponse({
+                "status": False,
+                "message": "Failed to Login!"
+            }, status=401)
     else:
         return JsonResponse({
-        "status": False,
-        "message": "Failed to Login, check your email/password."
+            "status": False,
+            "message": "Failed to Login, your username/password may be wrong."
         }, status=401)
 
 def logout_user(request):

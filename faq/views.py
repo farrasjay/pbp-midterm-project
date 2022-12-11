@@ -4,6 +4,7 @@ from django.http import HttpResponse, JsonResponse
 from faq.models import Question, QuestionForm
 from faq.forms import SendQuestionForm
 from django.core import serializers
+from django.views.decorators.csrf import csrf_exempt
 
 # @login_required(login_url='/uhealths/login/')
 def show_faq_page(request):
@@ -49,6 +50,7 @@ def get_session(request):
     }
     return JsonResponse(context)
 
+@csrf_exempt
 def like_unlike_post(request, id):
     user = request.user
     if request.method == 'POST':
@@ -64,9 +66,10 @@ def like_unlike_post(request, id):
 
             question_obj.save()
             return redirect('faq:faq')
-
+    print("TIDAK BISA YA HEHE")
     return redirect('faq:faq')
 
+@csrf_exempt
 def send_question(request):
     form = SendQuestionForm()
     context = ""

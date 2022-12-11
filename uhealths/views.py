@@ -13,6 +13,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from .models import UserHealthStatus
 from .forms import HealthStatsForm
+from django.views.decorators.csrf import csrf_exempt
 
 def landingpage(request):
     return render(request, 'home.html')
@@ -87,9 +88,17 @@ def show_json(request):
 
 @login_required(login_url='/uhealths/login/')
 def show_healthstats_ajax(request):
+    # print(request.user)
     healthstats_data = UserHealthStatus.objects.filter(user = request.user).order_by('-last_update')[:10]
     response = serializers.serialize("json", healthstats_data)
     return HttpResponse(response, content_type="application/json")
+
+@csrf_exempt
+def show_healthstats_json(request):
+    # print(request)
+    healthstats_data = UserHealthStatus.objects.filter(user_id = request.POST['user_id']).order_by('-last_update')[:10]
+    response = serializers.serialize("json", healthstats_data)
+    return JsonResponse({"data" : response})
 
 @login_required(login_url='/uhealths/login/')
 def post_healthstats_ajax(request):

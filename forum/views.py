@@ -1,7 +1,9 @@
 from django.shortcuts import render, get_object_or_404
-from forum.models import ForumPost, CommentForum
+from requests import Response
+from forum.models import ForumPost
 from .forms import *
 from django.http import HttpResponse, JsonResponse
+from django.core import serializers
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 import json
@@ -26,6 +28,40 @@ def get_forum_list(request):
     data = json.dumps(ret, default=str)
     return HttpResponse(data, content_type='application/json')
 
+@csrf_exempt
+def get_forum_flutter(request):
+    list_post = ForumPost.objects.all().order_by('-date_created')
+    ret = []
+    for posts in list_post:
+        temp = {
+            "pk": posts.pk,
+            "author": posts.author.username,
+            "topic": posts.topic,
+            "description":posts.description,
+            "date_created":posts.date_created.date(),
+        }
+        ret.append(temp)
+
+    data = json.dumps(ret, default=str)
+    return HttpResponse(data, content_type='application/json')
+
+
+@csrf_exempt
+def get_comment_flutter(request, id):
+    forumPost = ForumPost.objects.get(pk=id)
+    comments = CommentForum.objects.all().filter(parentForum=forumPost).order_by('-date_created')
+    ret = []
+    for comment in comments:
+        temp = {
+            "pk": comment.pk,
+            "author": comment.author,
+            "parentForum": comment.parentForum.pk,
+            "description": comment.description,
+            "date_created": comment.date_created.date(),
+        }
+        ret.append(temp)
+    data = json.dumps(ret, default=str)
+    return HttpResponse(data, content_type='application/json')
 
 @csrf_exempt
 def get_comment_list(request, id):
@@ -44,6 +80,40 @@ def get_comment_list(request, id):
         ret.append(temp)
     data = json.dumps(ret, default=str)
     return HttpResponse(data, content_type='application/json')
+
+
+@login_required(login_url='/authentications/login')
+@csrf_exempt
+def create_forum_flutter(request):
+    if request.method == 'POST':
+        topic = request.POST['topic']
+        description = request.POST['description']
+        ForumPost.objects.create(
+            topic=topic,
+            description=description,
+            date_created=datetime.date.today(),
+            author=request.user,
+        )
+        return JsonResponse({'status': 'success'})
+
+@login_required(login_url='/authentications/login')
+@csrf_exempt
+def create_comment_flutter(request, id):
+    if request.method == 'POST':
+        try:
+            forumPost = ForumPost.objects.get(pk=id)
+            description = request.POST['description']
+
+            CommentForum.objects.create(
+                parentForum=forumPost,
+                description=description,
+                date_created=datetime.date.today(),
+                author=request.user,
+            )
+            return JsonResponse({'status': 'success'})
+        except:
+            return JsonResponse({'status':'failed'})
+
 
 
 @login_required(login_url='/todolist/login')

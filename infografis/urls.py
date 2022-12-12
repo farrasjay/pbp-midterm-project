@@ -15,4 +15,7 @@ urlpatterns = [
     path('json/', views.show_json1, name='show_json1'),
     path('jsonkedua/', views.show_json2, name='show_json2'),
     path('jsonketiga/', views.show_json3, name='show_json3'),
+    path('add_comment1_flutter/', views.add_commentpertama_flutter, name='add_commentpertama_flutter'),
+    path('add_comment2_flutter/', views.add_commentkedua_flutter, name='add_commentkedua_flutter'),
+    path('add_comment3_flutter/', views.add_commentketiga_flutter, name='add_commentketiga_flutter'),
 ]

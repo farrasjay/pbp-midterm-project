@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import index, login_user, register_user, logout_user, login_flutter
+from .views import index, login_user, register_user, logout_user, login_flutter, logout_flutter
 
 app_name = 'authentication'
 

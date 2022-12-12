@@ -55,7 +55,7 @@ def get_comment_flutter(request, id):
         temp = {
             "pk": comment.pk,
             "author": comment.author,
-            "parentForum": comment.parentForum,
+            "parentForum": comment.parentForum.pk,
             "description": comment.description,
             "date_created": comment.date_created.date(),
         }

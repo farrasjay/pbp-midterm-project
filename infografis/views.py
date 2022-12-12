@@ -100,3 +100,39 @@ def show_json2(request):
 def show_json3(request):
     data = Commentketiga.objects.all()
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+@csrf_exempt
+def add_commentpertama_flutter(request):  #bener kan?
+    body_unicode = (request.body.decode('utf-8'))
+    body = json.loads(body_unicode)
+    user = request.user
+    date = datetime.date.today()
+    username = user.get_username()
+    comment = body['comment']
+    new_comment = Comment.objects.create(comment=comment, date=date, user=user, nama=username)
+        
+    return HttpResponse(status=202)
+
+@csrf_exempt
+def add_commentkedua_flutter(request):  
+    body_unicode = (request.body.decode('utf-8'))
+    body = json.loads(body_unicode)
+    user = request.user
+    date = datetime.date.today()
+    username = user.get_username()
+    comment = body['comment']
+    new_comment = Commentkedua.objects.create(comment=comment, date=date, user=user, nama=username)
+        
+    return HttpResponse(status=202)
+
+@csrf_exempt
+def add_commentketiga_flutter(request):  
+    body_unicode = (request.body.decode('utf-8'))
+    body = json.loads(body_unicode)
+    user = request.user
+    date = datetime.date.today()
+    username = user.get_username()
+    comment = body['comment']
+    new_comment = Commentketiga.objects.create(comment=comment, date=date, user=user, nama=username)
+        
+    return HttpResponse(status=202)

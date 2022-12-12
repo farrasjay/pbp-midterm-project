@@ -15,4 +15,5 @@ urlpatterns = [
     path('ajax/', views.show_healthstats_ajax, name="getajax"),
     path('ajax-post/', views.post_healthstats_ajax, name="postajax"),
     path('json-user/', views.show_healthstats_json, name="user-json"),
+    path('insert-healthstats-flutter/', views.insert_healthstats_flutter, name="insert-healthstats-flutter"),
 ]

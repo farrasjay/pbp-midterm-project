@@ -121,3 +121,27 @@ def post_healthstats_ajax(request):
 
         return JsonResponse(json.loads(json_object))
     return redirect("uhealths:insert_healthstats")
+
+@csrf_exempt
+def insert_healthstats_flutter(request):
+    data = json.loads(request.body)
+    
+    last_update = datetime.datetime.now()
+    height = float(request.POST['height'])
+    weight = float(request.POST["weight"])
+    age = float(request.POST["age"])
+    gender = request.POST["gender"]
+    calories_intake = request.POST["calories_intake"]
+
+    user = User.objects.get(username=request.user.username)
+    if request.method == 'POST':
+        instance = UserHealthStatus(user = user, gender = gender, age = age, height = height, weight = weight, calories_intake = calories_intake, bmr = calculate_bmr(gender, age, height, weight), bmi = calculate_bmi(height, weight), last_update = last_update)
+        instance.save()
+        return JsonResponse({
+                "status": True,
+                "message": "Successfull!"
+            }, status=200)
+    return JsonResponse({
+            "status": False,
+            "message": "Failed!"
+    }, status=502)

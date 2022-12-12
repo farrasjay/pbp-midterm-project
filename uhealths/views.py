@@ -11,6 +11,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from .models import UserHealthStatus
 from .forms import HealthStatsForm
 from django.views.decorators.csrf import csrf_exempt
@@ -127,11 +128,11 @@ def insert_healthstats_flutter(request):
     data = json.loads(request.body)
     
     last_update = datetime.datetime.now()
-    height = float(request.POST['height'])
-    weight = float(request.POST["weight"])
-    age = float(request.POST["age"])
-    gender = request.POST["gender"]
-    calories_intake = request.POST["calories_intake"]
+    height = float(data['height'])
+    weight = float(data["weight"])
+    age = float(data["age"])
+    gender = data["gender"]
+    calories_intake = data["calories_intake"]
 
     user = User.objects.get(username=request.user.username)
     if request.method == 'POST':

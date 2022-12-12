@@ -29,16 +29,12 @@ def login_user(request):
 
 @csrf_exempt
 def login_flutter(request):
-    # print("MASUK DISINI")
     data = json.loads(request.body)
     username = data['username']
     password = data['password']
 
     if request.method == 'POST':
         user = authenticate(username=username, password=password)
-        # print("AUTENTHICATE")
-        # print(username)
-        # print(password)
         if user is not None:
             login(request, user)
             return JsonResponse({
